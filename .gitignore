@@ -54,3 +54,4 @@ dkms.conf
 # Qt files
 Makefile
 *.pro.user
+.qmake.stash
