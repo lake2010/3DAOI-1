@@ -11,15 +11,15 @@ void func()
 
 int main()
 {
-    try
-    {
-        func();
-    }
+//    try
+//    {
+//        func();
+//    }
 
-    catch(SDK::CustomException& ex)
-    {
-        cout << ex.what() << endl;
-    }
+//    catch(SDK::CustomException& ex)
+//    {
+//        cout << ex.what() << endl;
+//    }
 
     return 0;
 }
