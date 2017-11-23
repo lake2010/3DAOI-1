@@ -1,13 +1,14 @@
 #include <iostream>
 
 #include "SDK/customexception.hpp"
+#include "Job/measuredobj.hpp"
 
 using namespace std;
 
-void func()
-{
-    THROW_EXCEPTION("Argument invaild!");
-}
+//void func()
+//{
+//    THROW_EXCEPTION("Argument invaild!");
+//}
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
 //    {
 //        cout << ex.what() << endl;
 //    }
+
 
     return 0;
 }
