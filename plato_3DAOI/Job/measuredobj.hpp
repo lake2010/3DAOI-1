@@ -30,7 +30,6 @@ namespace Job
 
         /*
         *  @brief   ~MeasuredObj: 析构函数
-        *           用于释放内存
         *  @param   N/A
         *  @return  N/A
         */
@@ -40,10 +39,8 @@ namespace Job
 
 
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //访存函数
+        //get & set functions
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1 name
         /*
         *  @brief   name:    被测目标名
         *  @param   N/A
@@ -64,13 +61,11 @@ namespace Job
             this->m_name = name;
         }
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2 body
         /*
-        *  @brief   body:    被测目标的Rectangle类型信息体
-        *                    类中包含X、Y坐标、宽度、高度、角度
+        *  @brief   body:    矩形的信息
+        *                    信息中包含X、Y坐标、宽度、高度、角度
         *  @param   N/A
-        *  @return  传入的Rectangle类型信息体
+        *  @return  传入的矩形信息
         */
         SDK::Rectangle body()
         {
@@ -78,8 +73,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setBody: 设置被测目标的Rectangle类型信息体
-        *  @param   body:    传入的Rectangle类型信息体
+        *  @brief   setBody: 设置矩形的信息
+        *  @param   body:    传入的矩形信息
         *  @return  N/A
         */
         void setBody( SDK::Rectangle body )
@@ -87,12 +82,10 @@ namespace Job
             this->m_body = body;
         }
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //3 pNextMeasuredObj
         /*
-        *  @brief   pNextMeasuredObj:    指针指向下一个被测目标
+        *  @brief   pNextMeasuredObj:    后继节点指针
         *  @param   N/A
-        *  @return  传入的指针指向下一个被测目标
+        *  @return  传入的后继节点指针
         */
         MeasuredObj* pNextMeasuredObj()
         {
@@ -100,8 +93,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setpNextMeasuredObj: 设置指针指向下一个被测目标
-        *  @param   pNextMeasureObj:     传入的指针指向下一个被测目标
+        *  @brief   setpNextMeasuredObj: 设置后继节点指针
+        *  @param   pNextMeasureObj:     传入的后继节点指针
         *  @return  N/A
         */
         void setpNextMeasuredObj( MeasuredObj* pNextMeasureObj )
@@ -109,12 +102,10 @@ namespace Job
             this->m_pNextMeasuredObj = pNextMeasureObj;
         }
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //4 pPreMeasuredObj
         /*
-        *  @brief   pPreMeasuredObj:    指针指向上一个被测目标
+        *  @brief   pPreMeasuredObj:    前继节点指针
         *  @param   N/A
-        *  @return  传入的指针指向上一个被测目标
+        *  @return  传入的前继节点指针
         */
         MeasuredObj* pPreMeasuredObj()
         {
@@ -122,8 +113,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setpPreMeasuredObj: 设置指针指向上一个被测目标
-        *  @param   pPreMeasureObj:     传入的指针指向上一个被测目标
+        *  @brief   setpPreMeasuredObj: 设置前继节点指针
+        *  @param   pPreMeasureObj:     传入的前继节点指针
         *  @return  N/A
         */
         void setpPreMeasuredObj( MeasuredObj* pPreMeasureObj )
@@ -135,9 +126,9 @@ namespace Job
 
     private:
         std::string m_name;                 // 被测目标名
-        SDK::Rectangle m_body;              // 被测目标信息体
-        MeasuredObj* m_pNextMeasuredObj;    // 指针指向下一个被测目标
-        MeasuredObj* m_pPreMeasuredObj;     // 指针指向上一个被测目标
+        SDK::Rectangle m_body;              // 矩形的信息
+        MeasuredObj* m_pNextMeasuredObj;    // 后继节点指针
+        MeasuredObj* m_pPreMeasuredObj;     // 前继节点指针
     };
 
 }//End of namespace Job
