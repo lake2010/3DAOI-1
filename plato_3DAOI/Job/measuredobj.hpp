@@ -12,7 +12,7 @@ namespace Job
      *
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
-     *                note:create it
+     *                 note:create it
      */
     class MeasuredObj
     {
@@ -94,9 +94,9 @@ namespace Job
         *  @param   N/A
         *  @return  传入的指针指向下一个被测目标
         */
-        MeasuredObj* pNextMeasuredObj()
+        MeasuredObj* pNext()
         {
-            return this->m_pNextMeasuredObj;
+            return this->m_pNext;
         }
 
         /*
@@ -104,9 +104,9 @@ namespace Job
         *  @param   pNextMeasureObj:     传入的指针指向下一个被测目标
         *  @return  N/A
         */
-        void setpNextMeasuredObj( MeasuredObj* pNextMeasureObj )
+        void setpNext( MeasuredObj* pNext )
         {
-            this->m_pNextMeasuredObj = pNextMeasureObj;
+            this->m_pNext = pNext;
         }
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -116,9 +116,9 @@ namespace Job
         *  @param   N/A
         *  @return  传入的指针指向上一个被测目标
         */
-        MeasuredObj* pPreMeasuredObj()
+        MeasuredObj* pPre()
         {
-            return this->m_pPreMeasuredObj;
+            return this->m_pPre;
         }
 
         /*
@@ -126,9 +126,9 @@ namespace Job
         *  @param   pPreMeasureObj:     传入的指针指向上一个被测目标
         *  @return  N/A
         */
-        void setpPreMeasuredObj( MeasuredObj* pPreMeasureObj )
+        void setpPre( MeasuredObj* pPre )
         {
-            this->m_pPreMeasuredObj = pPreMeasureObj;
+            this->m_pPre = pPre;
         }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -136,8 +136,8 @@ namespace Job
     private:
         std::string m_name;                 // 被测目标名
         SDK::Rectangle m_body;              // 被测目标信息体
-        MeasuredObj* m_pNextMeasuredObj;    // 指针指向下一个被测目标
-        MeasuredObj* m_pPreMeasuredObj;     // 指针指向上一个被测目标
+        MeasuredObj* m_pNext;    // 指针指向下一个被测目标
+        MeasuredObj* m_pPre;     // 指针指向上一个被测目标
     };
 
 }//End of namespace Job

@@ -9,7 +9,7 @@ namespace SDK
      *            设置并记录被测目标的坐标、大小、角度
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
-     *                note:create it
+     *                 note:create it
      */
     class Rectangle
     {

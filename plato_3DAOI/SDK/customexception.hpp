@@ -22,7 +22,7 @@ namespace SDK
      *            继承标准异常类exception
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
-     *                note:create it
+     *                 note:create it
      */
     class CustomException: public std::exception
     {
