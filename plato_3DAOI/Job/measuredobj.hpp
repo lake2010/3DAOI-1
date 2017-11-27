@@ -12,7 +12,7 @@ namespace Job
      *
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
-     *                note:create it
+     *                 note:create it
      */
     class MeasuredObj
     {
@@ -83,43 +83,43 @@ namespace Job
         }
 
         /*
-        *  @brief   pNextMeasuredObj:    后继节点指针
+        *  @brief   pNext:    后继节点指针
         *  @param   N/A
         *  @return  传入的后继节点指针
         */
-        MeasuredObj* pNextMeasuredObj()
+        MeasuredObj* pNext()
         {
-            return this->m_pNextMeasuredObj;
+            return this->m_pNext;
         }
 
         /*
-        *  @brief   setpNextMeasuredObj: 设置后继节点指针
-        *  @param   pNextMeasureObj:     传入的后继节点指针
+        *  @brief   setpNext:  设置后继节点指针
+        *  @param   pNext:     传入的后继节点指针
         *  @return  N/A
         */
-        void setpNextMeasuredObj( MeasuredObj* pNextMeasureObj )
+        void setpNext( MeasuredObj* pNext )
         {
-            this->m_pNextMeasuredObj = pNextMeasureObj;
+            this->m_pNext = pNext;
         }
 
         /*
-        *  @brief   pPreMeasuredObj:    前继节点指针
+        *  @brief   pPre:    前继节点指针
         *  @param   N/A
         *  @return  传入的前继节点指针
         */
-        MeasuredObj* pPreMeasuredObj()
+        MeasuredObj* pPre()
         {
-            return this->m_pPreMeasuredObj;
+            return this->m_pPre;
         }
 
         /*
-        *  @brief   setpPreMeasuredObj: 设置前继节点指针
-        *  @param   pPreMeasureObj:     传入的前继节点指针
+        *  @brief   setpPre:  设置前继节点指针
+        *  @param   pPre:     传入的前继节点指针
         *  @return  N/A
         */
-        void setpPreMeasuredObj( MeasuredObj* pPreMeasureObj )
+        void setpPre( MeasuredObj* pPre )
         {
-            this->m_pPreMeasuredObj = pPreMeasureObj;
+            this->m_pPre = pPre;
         }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -127,8 +127,8 @@ namespace Job
     private:
         std::string m_name;                 // 被测目标名
         SDK::Rectangle m_body;              // 矩形的信息
-        MeasuredObj* m_pNextMeasuredObj;    // 后继节点指针
-        MeasuredObj* m_pPreMeasuredObj;     // 前继节点指针
+        MeasuredObj* m_pNext;               // 后继节点指针
+        MeasuredObj* m_pPre;                // 前继节点指针
     };
 
 }//End of namespace Job
