@@ -9,7 +9,8 @@ namespace Job
 {
     /**
      *  @brief    MeasuredObj
-     *
+     *            被测对象集合
+     *            类中包含被测对象名、本体信息、上一对象指针和下一对象指针
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
      *                 note:create it
@@ -42,9 +43,9 @@ namespace Job
         //get & set functions
 
         /*
-        *  @brief   name:    被测目标名
+        *  @brief   name:   被测对象名
         *  @param   N/A
-        *  @return  传入的被测目标名
+        *  @return  传入的被测对象名
         */
         std::string name()
         {
@@ -52,8 +53,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setName: 设置被测目标名
-        *  @param   name:    传入的被测目标名
+        *  @brief   setName:    设置被测对象名
+        *  @param   name:       传入的被测对象名
         *  @return  N/A
         */
         void setName( std::string name )
@@ -62,10 +63,10 @@ namespace Job
         }
 
         /*
-        *  @brief   body:    矩形的信息
-        *                    信息中包含X、Y坐标、宽度、高度、角度
+        *  @brief   body:   本体信息
+        *                   本体中包含X、Y坐标、宽度、高度、角度信息
         *  @param   N/A
-        *  @return  传入的矩形信息
+        *  @return  传入的本体信息
         */
         SDK::Rectangle body()
         {
@@ -73,8 +74,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setBody: 设置矩形的信息
-        *  @param   body:    传入的矩形信息
+        *  @brief   setBody:    设置本体的信息
+        *  @param   body:       传入的本体信息
         *  @return  N/A
         */
         void setBody( SDK::Rectangle body )
@@ -83,54 +84,53 @@ namespace Job
         }
 
         /*
-        *  @brief   pNext:    后继节点指针
+        *  @brief   pNextObj:   下一对象指针
         *  @param   N/A
-        *  @return  传入的后继节点指针
+        *  @return  传入的下一对象指针
         */
-        MeasuredObj* pNext()
+        MeasuredObj* pNextObj()
         {
-            return this->m_pNext;
+            return this->m_pNextObj;
         }
 
         /*
-        *  @brief   setpNext:  设置后继节点指针
-        *  @param   pNext:     传入的后继节点指针
+        *  @brief   setpNextObj:    设置下一对象指针
+        *  @param   pNextObj:       传入的下一对象指针
         *  @return  N/A
         */
-        void setpNext( MeasuredObj* pNext )
+        void setPNextObj( MeasuredObj* pNextObj )
         {
-            this->m_pNext = pNext;
+            this->m_pNextObj = pNextObj;
         }
 
         /*
-        *  @brief   pPre:    前继节点指针
+        *  @brief   pPreObj:    上一对象指针
         *  @param   N/A
-        *  @return  传入的前继节点指针
+        *  @return  传入的上一对象指针
         */
-        MeasuredObj* pPre()
+        MeasuredObj* pPreObj()
         {
-            return this->m_pPre;
+            return this->m_pPreObj;
         }
 
         /*
-        *  @brief   setpPre:  设置前继节点指针
-        *  @param   pPre:     传入的前继节点指针
+        *  @brief   setpPreObj: 设置上一对象指针
+        *  @param   pPreObj:    传入的上一对象指针
         *  @return  N/A
         */
-        void setpPre( MeasuredObj* pPre )
+        void setpPreObj( MeasuredObj* pPreObj )
         {
-            this->m_pPre = pPre;
+            this->m_pPreObj = pPreObj;
         }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private:
-        std::string m_name;                 // 被测目标名
-        SDK::Rectangle m_body;              // 矩形的信息
-        MeasuredObj* m_pNext;               // 后继节点指针
-        MeasuredObj* m_pPre;                // 前继节点指针
+        std::string m_name;         // 被测对象名
+        SDK::Rectangle m_body;      // 本体信息
+        MeasuredObj* m_pNextObj;    // 下一对象指针
+        MeasuredObj* m_pPreObj;     // 上一对象指针
     };
-
 }//End of namespace Job
 
 #endif // MEASUREDOBJ_HPP

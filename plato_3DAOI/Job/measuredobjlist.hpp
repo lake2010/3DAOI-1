@@ -8,7 +8,9 @@ namespace Job
 {
     /**
      *  @brief    MeasuredObjList
-     *            双向链表，用于存放被测目标
+     *            被测对象列表
+     *            类中使用双向链表结构，可实现对列表中对象头插、尾插、尾删的功能
+     *            该类还有记录列表中对象个数、打印对象、清空对象的功能
      *  @author   plato
      *  @version  1.00 2017-11-23 plato
      *                 note:create it
@@ -28,7 +30,6 @@ namespace Job
 
         /*
         *  @brief   ~MeasuredObjList: 析构函数
-        *           用于释放内存
         *  @param   N/A
         *  @return  N/A
         */
@@ -41,35 +42,35 @@ namespace Job
         //member functions
 
         /*
-        *  @brief   pushHead:         在链表头部插入节点
-        *  @param   measuredObj:      插入的节点对象
+        *  @brief   pushHead:   在列表头部插入一个对象
+        *  @param   newObj:     插入的新对象
         *  @return  N/A
         */
-        void pushHead( MeasuredObj measuredObj );
+        void pushHead( MeasuredObj newObj );
 
         /*
-        *  @brief   pushTail:         在链表尾部插入节点
-        *  @param   measuredObj:      插入的节点对象
+        *  @brief   pushTail:   在列表尾部插入一个对象
+        *  @param   newObj:     插入的新对象
         *  @return  N/A
         */
-        void pushTail( MeasuredObj measuredObj );
+        void pushTail( MeasuredObj newObj );
 
         /*
-        *  @brief   pullTail：        移除最后的节点
+        *  @brief   pullTail：   移除尾部的一个对象
         *  @param   N/A
         *  @return  N/A
         */
         void pullTail();
 
         /*
-        *  @brief   print：           打印节点内容
+        *  @brief   print：      打印对象内容
         *  @param   N/A
         *  @return  N/A
         */
         void print();
 
         /*
-        *  @brief   clear：           清空所有的元素
+        *  @brief   clear：      清空所有的对象
         *  @param   N/A
         *  @return  N/A
         */
@@ -79,28 +80,21 @@ namespace Job
 
 
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //get&set functions
+        //get & set functions
 
         /*
-        *  @brief   size:    链表大小
+        *  @brief   size:    列表大小
         *  @param   N/A
-        *  @return  传入的链表大小
+        *  @return  传入的列表大小
         */
         int size() { return this->m_size; }
-
-        /*
-        *  @brief   setSize: 设置链表大小
-        *  @param   size:    传入的链表大小
-        *  @return  N/A
-        */
-        void setSize( int size ) { this->m_size = size; }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private:
-        int m_size;                         // 链表大小
-        MeasuredObj* m_pHeadNode;           // 链表的头节点指针对象
-        MeasuredObj* m_pTailNode;           // 链表的尾节点指针对象
+        int m_size;                 // 列表大小
+        MeasuredObj* m_pHeadObj;    // 列表的头对象指针
+        MeasuredObj* m_pTailObj;    // 列表的尾对象指针
 
     };
 

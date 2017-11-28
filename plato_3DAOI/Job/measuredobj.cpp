@@ -6,8 +6,8 @@ MeasuredObj::MeasuredObj()
 {
     // 成员变量初始化
     this->m_name = "";
-    this->m_pNext = nullptr;
-    this->m_pPre = nullptr;
+    this->m_pNextObj = nullptr;
+    this->m_pPreObj = nullptr;
 }
 
 MeasuredObj::~MeasuredObj()
