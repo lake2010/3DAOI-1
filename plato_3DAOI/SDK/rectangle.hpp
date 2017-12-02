@@ -13,7 +13,7 @@ namespace SDK
      */
     class Rectangle
     {
-    public:        
+    public:
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //constructor & destructor
 
@@ -23,6 +23,19 @@ namespace SDK
         *  @return  N/A
         */
         Rectangle();
+
+        /*
+        *  @brief   Rectangle:  构造函数
+        *  @param   posX:    矩形的X坐标
+        *           posY:    矩形的Y坐标
+        *           width:   矩形的宽度
+        *           height:  矩形的高度
+        *  @return  N/A
+        */
+        Rectangle( double posX,
+                   double posY,
+                   double width,
+                   double height );
 
         /*
         *  @brief   ~Rectangle: 析构函数

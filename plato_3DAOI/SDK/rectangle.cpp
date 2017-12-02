@@ -12,6 +12,17 @@ Rectangle::Rectangle()
     this->m_angle = 0;
 }
 
+Rectangle::Rectangle( double posX,
+                      double posY,
+                      double width,
+                      double height )
+{
+    this->m_posX = posX;
+    this->m_posY = posY;
+    this->m_width = width;
+    this->m_height = height;
+}
+
 Rectangle::~Rectangle()
 {
 
