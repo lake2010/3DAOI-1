@@ -1,3 +1,5 @@
+#include <iomanip>
+
 #include "measuredobjlist.hpp"
 
 using namespace std;
@@ -16,7 +18,7 @@ MeasuredObjList::~MeasuredObjList()
 
 }
 
-void MeasuredObjList::pushHead( MeasuredObj newObj )
+void MeasuredObjList::pushHead( MeasuredObj &newObj )
 {
     // 如果一开始没有对象，则创建一个新对象
     if ( this->m_pHeadObj == nullptr )
@@ -37,7 +39,7 @@ void MeasuredObjList::pushHead( MeasuredObj newObj )
     this->m_size++;     // 列表大小加1
 }
 
-void MeasuredObjList::pushTail( MeasuredObj newObj )
+void MeasuredObjList::pushTail( MeasuredObj &newObj )
 {
     // 如果一开始没有对象，则创建一个新对象
     if ( this->m_pHeadObj == nullptr )
@@ -88,12 +90,13 @@ void MeasuredObjList::print()
     // 打印列表中所有元素
     while ( pCurrentObj != nullptr )
     {
-        cout << pCurrentObj->name() << " "
-             << pCurrentObj->body().angle() << " "
-             << pCurrentObj->body().height() << " "
-             << pCurrentObj->body().posX() << " "
-             << pCurrentObj->body().posY() << " "
-             << pCurrentObj->body().width() << endl;
+        cout << fixed << setprecision(2)
+             << pCurrentObj->name() << " "
+             << "X: " << pCurrentObj->body().posX() << " "
+             << "Y: " << pCurrentObj->body().posY() << " "
+             << "Width: " << pCurrentObj->body().width() << " "
+             << "Height: " << pCurrentObj->body().height() << " "
+             << endl;
         // 当前对象的下一对象替换为当前对象
         pCurrentObj = pCurrentObj->pNextObj();
     }

@@ -1,8 +1,7 @@
 #ifndef MEASUREDOBJLIST_HPP
 #define MEASUREDOBJLIST_HPP
 
-#include "Job/measuredobj.hpp"
-
+#include "measuredobj.hpp"
 
 namespace Job
 {
@@ -46,14 +45,14 @@ namespace Job
         *  @param   newObj:     插入的新对象
         *  @return  N/A
         */
-        void pushHead( MeasuredObj newObj );
+        void pushHead( MeasuredObj &newObj );
 
         /*
         *  @brief   pushTail:   在列表尾部插入一个对象
         *  @param   newObj:     插入的新对象
         *  @return  N/A
         */
-        void pushTail( MeasuredObj newObj );
+        void pushTail( MeasuredObj &newObj );
 
         /*
         *  @brief   pullTail：   移除尾部的一个对象
@@ -102,7 +101,6 @@ namespace Job
         int m_size;                 // 列表大小
         MeasuredObj* m_pHeadObj;    // 列表的头对象指针
         MeasuredObj* m_pTailObj;    // 列表的尾对象指针
-
     };
 
 }//End of namespace Job
