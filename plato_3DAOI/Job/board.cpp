@@ -20,6 +20,9 @@ Board::~Board()
 void Board::writeToXml( QDomDocument job,
                         QDomElement root )
 {
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //1 创建基板信息的节点及其属性，并作为传入的根节点的子节点
+
     // 创建第一个子节点及其子元素（记录基板信息）
     QDomElement child = job.createElement( "Board" );
     // 创建第一个子节点的属性（基板名称、大小、位置）
@@ -30,6 +33,9 @@ void Board::writeToXml( QDomDocument job,
     child.setAttribute( "OriginalY", originalY() );
     // 添加节点child作为根节点root的子节点
     root.appendChild( child );
+
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //2 循环创建列表中被测对象的节点及其属性，并作为board的子节点
 
     // 定义一个当前对象指针，赋予列表的头对象指针
     MeasuredObj *pCurrentObj = measureObjs().pHeadObj();
