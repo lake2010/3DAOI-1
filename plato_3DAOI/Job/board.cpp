@@ -1,5 +1,7 @@
 #include "board.hpp"
 
+#include <iomanip>
+
 using namespace Job;
 
 Board::Board()
@@ -24,13 +26,12 @@ void Board::writeToXml( QDomDocument job,
     //1 创建基板信息的节点及其属性，并作为传入的根节点的子节点
 
     // 创建第一个子节点及其子元素（记录基板信息）
-    QDomElement child = job.createElement( "Board" );
+    QDomElement child = job.createElement( QString::fromStdString( name() ) );
     // 创建第一个子节点的属性（基板名称、大小、位置）
-    child.setAttribute( "Name", QString::fromStdString( name() ) );
-    child.setAttribute( "SizeX", sizeX() );
-    child.setAttribute( "SizeY", sizeY() );
-    child.setAttribute( "OriginalX", originalX() );
-    child.setAttribute( "OriginalY", originalY() );
+    child.setAttribute( "SizeX", QString::number( sizeX(), 0, 2 ) );
+    child.setAttribute( "SizeY", QString::number( sizeY(), 0, 2 ) );
+    child.setAttribute( "OriginalX", QString::number( originalX(), 0, 2 ) );
+    child.setAttribute( "OriginalY", QString::number( originalY(), 0, 2 ) );
     // 添加节点child作为根节点root的子节点
     root.appendChild( child );
 
@@ -46,10 +47,14 @@ void Board::writeToXml( QDomDocument job,
         QDomElement measuredObj = job.createElement( QString::fromStdString(
                                                      pCurrentObj->name() ) );
         // 创建第二个子节点的属性（被测对象坐标、宽、高）
-        measuredObj.setAttribute( "PosX", pCurrentObj->body().posX() );
-        measuredObj.setAttribute( "PosY", pCurrentObj->body().posY() );
-        measuredObj.setAttribute( "Width", pCurrentObj->body().width() );
-        measuredObj.setAttribute( "Height", pCurrentObj->body().height() );
+        measuredObj.setAttribute( "PosX", QString::number(
+                                          pCurrentObj->body().posX(), 0, 2 ) );
+        measuredObj.setAttribute( "PosY", QString::number(
+                                          pCurrentObj->body().posY(), 0, 2 ) );
+        measuredObj.setAttribute( "Width", QString::number(
+                                           pCurrentObj->body().width(), 0, 2 ) );
+        measuredObj.setAttribute( "Height", QString::number(
+                                            pCurrentObj->body().height(), 0, 2 ) );
         // 添加节点measuredObj作为子节点child的子节点
         child.appendChild( measuredObj );
 

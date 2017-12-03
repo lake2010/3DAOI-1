@@ -91,11 +91,11 @@ void MeasuredObjList::print()
     while ( pCurrentObj != nullptr )
     {
         cout << fixed << setprecision(2)
-             << pCurrentObj->name() << " "
-             << "X: " << pCurrentObj->body().posX() << " "
-             << "Y: " << pCurrentObj->body().posY() << " "
-             << "Width: " << pCurrentObj->body().width() << " "
-             << "Height: " << pCurrentObj->body().height() << " "
+             << pCurrentObj->name() << "\t"
+             << "X: " << pCurrentObj->body().posX() << "\t"
+             << "Y: " << pCurrentObj->body().posY() << "\t"
+             << "Width: " << pCurrentObj->body().width() << "\t"
+             << "Height: " << pCurrentObj->body().height() << "\t"
              << endl;
         // 当前对象的下一对象替换为当前对象
         pCurrentObj = pCurrentObj->pNextObj();
