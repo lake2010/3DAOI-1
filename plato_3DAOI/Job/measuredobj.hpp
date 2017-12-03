@@ -131,6 +131,7 @@ namespace Job
         MeasuredObj* m_pNextObj;    // 下一对象指针
         MeasuredObj* m_pPreObj;     // 上一对象指针
     };
+
 }//End of namespace Job
 
 #endif // MEASUREDOBJ_HPP
