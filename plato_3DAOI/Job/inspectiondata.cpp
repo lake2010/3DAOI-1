@@ -41,8 +41,8 @@ void InspectionData::writeToXml( QString fileName )
     {
         // 输出到文件
         QTextStream outStream( &file );
-        // 保存文件，缩进4格
-        job.save( outStream, 4 );
+        // 保存文件，缩进2格
+        job.save( outStream, 2 );
         // 关闭文件
         file.close();
     }

@@ -1,9 +1,12 @@
 #include <iostream>
 
 #include "SDK/customexception.hpp"
-#include "Job/measuredobj.hpp"
+#include "App/datagenerator.hpp"
 
 using namespace std;
+using namespace App;
+using namespace Job;
+using namespace SDK;
 
 //void func()
 //{
@@ -21,6 +24,10 @@ int main()
 //    {
 //        cout << ex.what() << endl;
 //    }
+
+    DataGenerator data;
+    data.generateData();
+
 
 
     return 0;

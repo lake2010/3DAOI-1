@@ -13,6 +13,8 @@ SOURCES += main.cpp \
     Job/measuredobj.cpp \
     SDK/rectangle.cpp \
     SDK/customexception.cpp \
+    SDK/datahelper.cpp \
+    App/datagenerator.cpp
 
 HEADERS += \
     App/app.hpp \
@@ -23,5 +25,7 @@ HEADERS += \
     Job/measuredobj.hpp \
     SDK/rectangle.hpp \
     SDK/customexception.hpp \
+    SDK/datahelper.hpp \
+    App/datagenerator.hpp
 
 DISTFILES +=
