@@ -2,6 +2,7 @@
 
 #include "SDK/customexception.hpp"
 #include "App/datagenerator.hpp"
+#include "App/appsetting.hpp"
 
 using namespace std;
 using namespace App;
@@ -27,6 +28,9 @@ int main()
 
     DataGenerator data;
     data.generateData();
+
+    AppSetting app;
+    app.load("AppSetting.ini");
 
 
 
