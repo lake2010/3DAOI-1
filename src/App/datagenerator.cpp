@@ -59,6 +59,6 @@ void DataGenerator::generateData()
     inspectionData.setLastEditingTime( DataHelper::generateTime() );
     inspectionData.setBoard( board );
 
-    inspectionData.writeToXml( "data.xml" );
+    inspectionData.writeToXml( "../data/V1.xml" );
 
 }

@@ -30,7 +30,7 @@ int main()
     data.generateData();
 
     AppSetting app;
-    app.load("AppSetting.ini");
+    app.load("../src/AppSetting.ini");
 
 
 
