@@ -28,9 +28,9 @@ namespace SDK
     {
     public:
 
-    //    CustomException();
+        CustomException();
         CustomException(std::string& message);
-    //    virtual ~CustomException();
+        virtual ~CustomException();
 
         const std::string originalMsg() const{return this->m_originalMsg;}
 
