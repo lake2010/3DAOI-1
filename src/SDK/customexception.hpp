@@ -27,20 +27,60 @@ namespace SDK
     class CustomException: public std::exception
     {
     public:
+        //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //constructor & destructor
 
+        /*
+        *  @brief   CustomException:  构造函数
+        *  @param   N/A
+        *  @return  N/A
+        */
         CustomException();
+
+        /*
+        *  @brief   CustomException:  构造函数
+        *  @param   message:    捕获到的信息
+        *  @return  N/A
+        */
         CustomException(std::string& message);
+
+        /*
+        *  @brief   ~CustomException: 析构函数
+        *  @param   N/A
+        *  @return  N/A
+        */
         virtual ~CustomException();
 
-        const std::string originalMsg() const{return this->m_originalMsg;}
+        //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+        //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //get & set functions
+
+        /*
+        *  @brief   originalMsg:  原始的信息
+        *  @param   N/A
+        *  @return  原始的信息
+        */
+        const std::string originalMsg() const
+        {
+            return this->m_originalMsg;
+        }
+
+        /*
+        *  @brief   what:  重写的what()函数，自定义异常信息
+        *  @param   N/A
+        *  @return  自定义的异常信息
+        */
         virtual const char* what() const _GLIBCXX_USE_NOEXCEPT override
         {
             return m_originalMsg.data();
         }
 
+        //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     private:
-        std::string m_originalMsg;
+        std::string m_originalMsg;  // 原始的信息
     };
 }//End of namespace SDK
 
