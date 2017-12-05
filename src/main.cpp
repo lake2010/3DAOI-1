@@ -3,6 +3,7 @@
 #include "SDK/customexception.hpp"
 #include "App/datagenerator.hpp"
 #include "App/appsetting.hpp"
+#include "App/capturesetting.hpp"
 
 using namespace std;
 using namespace App;
@@ -26,11 +27,16 @@ int main()
 //        cout << ex.what() << endl;
 //    }
 
-    DataGenerator data;
-    data.generateData();
+
 
     AppSetting app;
-    app.load("../src/AppSetting.ini");
+    app.load( "../src/AppSetting.ini" );
+
+    CaptureSetting capture;
+    capture.load( "../src/CaptureSetting.ini" );
+
+    DataGenerator data;
+    data.generateData();
 
 
 
