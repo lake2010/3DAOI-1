@@ -136,14 +136,14 @@ void AppSetting::readAppSetting( const QString &path )
 
 void AppSetting::load( const QString &path )
 {
-    // 如果文件不存在，创建默认配置文件，写入默认配置
+    //1 如果文件不存在，创建默认配置文件，写入默认配置
+    //2 如果文件存在，则读取配置文件
     if( !QFile::exists( path ) )
     {
         writeAppSetting( path );
-    }
-    // 如果文件存在，则读取配置文件
+    }    
     else
-    {
+    {        
         readAppSetting( path );
     }
 }

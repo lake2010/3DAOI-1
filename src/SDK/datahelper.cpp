@@ -32,7 +32,7 @@ string DataHelper::generateTime()
     // 基于当前系统的当前日期/时间
     time_t now = time(0);
     tm *localTime = localtime(&now);
-
+    // 将日期和时间格式化输出
     char currentTime[20];
     sprintf(currentTime,"%d/%02d/%02d %02d:%02d:%02d",
             1900 + localTime->tm_year,

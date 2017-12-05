@@ -9,6 +9,7 @@ namespace SDK
      *  @brief    DataHelper
      *            数据助手：
      *            1.生成随机数
+     *            2.生成当前系统时间
      *  @author   plato
      *  @version  1.00 2017-11-29 plato
      *                 note:create it

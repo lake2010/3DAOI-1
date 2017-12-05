@@ -19,7 +19,7 @@ namespace SDK
 {
     /**
      *  @brief    CustomException
-     *            继承标准异常类exception
+     *            继承标准异常类exception,用于捕获异常，输出异常信息
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
      *                 note:create it

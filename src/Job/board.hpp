@@ -5,15 +5,13 @@
 
 #include "measuredobjlist.hpp"
 
-using namespace std;
-
 namespace Job
 {
     /**
      *  @brief    Board
-     *            基板
-     *            类中包含基板名称、基板的长宽、基板的原点位置、被测对象列表
-     *            实现将基板上所有信息写入xml文件的功能
+     *            基板：
+     *            1.类中包含基板名称、基板的长宽、基板的原点位置、被测对象列表
+     *            2.实现将基板上所有信息写入xml文件的功能
      *  @author   plato
      *  @version  1.00 2017-11-28 plato
      *                 note:create it

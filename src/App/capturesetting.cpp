@@ -72,14 +72,14 @@ void CaptureSetting::load( const QString &path )
 {
     try
     {
-        // 如果文件不存在，直接抛出异常，提示错误信息
+        //1 如果文件不存在，直接抛出异常，提示错误信息;
+        //2 如果文件存在，则读取文件，检查功能配置是否正常
         if( !QFile::exists( path ) )
         {
             THROW_EXCEPTION( "CaptureSetting文件读取失败！" );
-        }
-        // 如果文件存在，则读取检查功能配置是否正常
+        }        
         else
-        {
+        {           
             readCaptureSetting( path );
         }
     }

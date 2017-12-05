@@ -1,7 +1,6 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-
 namespace SDK
 {
     /**

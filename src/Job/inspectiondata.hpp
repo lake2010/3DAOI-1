@@ -7,9 +7,9 @@ namespace Job
 {
     /**
      *  @brief    InspectionData
-     *            检测数据
-     *            类中包含版本信息、上次编辑时间、基板信息
-     *            实现将检测数据写入xml文件的功能
+     *            检测数据：
+     *            1.类中包含版本信息、上次编辑时间、基板信息
+     *            2.实现将检测数据写入xml文件的功能
      *  @author   plato
      *  @version  1.00 2017-12-02 plato
      *                 note:create it

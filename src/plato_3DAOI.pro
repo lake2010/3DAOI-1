@@ -5,7 +5,6 @@ CONFIG -= app_bundle
 QT += xml
 
 SOURCES += main.cpp \
-    App/app.cpp \
     App/appsetting.cpp \
     Job/inspectiondata.cpp \
     Job/board.cpp \
@@ -18,7 +17,6 @@ SOURCES += main.cpp \
     App/capturesetting.cpp
 
 HEADERS += \
-    App/app.hpp \
     App/appsetting.hpp \
     Job/inspectiondata.hpp \
     Job/board.hpp \
