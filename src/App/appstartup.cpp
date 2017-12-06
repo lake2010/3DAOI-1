@@ -2,11 +2,14 @@
 #include <QFile>
 #include <QTextStream>
 
+#include "DB/sqlitedb.hpp"
+
 #include "appstartup.hpp"
 #include "SDK/customexception.hpp"
 
 using namespace std;
 using namespace App;
+using namespace SSDK::DB;
 
 AppStartup::AppStartup()
 {
@@ -62,13 +65,17 @@ void AppStartup::readJobFolder()
         DataGenerator data;
         data.generateData( inspectionData, objs );
         //2.1.2 生成程式
-//        generateJob();
+        generateJob( QString::fromStdString(
+                     this->m_appSetting.jobFolderPath() ) + "V1",
+                     inspectionData );
         //2.1.3 打印数据到屏幕
+        cout << endl << "检测信息如下：" << endl;
         inspectionData.print();
         //2.1.4 将数据写入xml文件
         writeToXml( QString::fromStdString(
                     this->m_appSetting.jobFolderPath() ) + "V1.xml",
                     inspectionData );
+        cout << "文件夹中无程式，已生成默认程式!" << endl;
     }
     else
     {
@@ -88,7 +95,9 @@ void AppStartup::readJobFolder()
             if( cin && num < fileInfoList.size() && num >= 0 )
             {
                 fileInfo = fileInfoList.at( num );
+                cout << "success" << endl;
                 // loadInspectionData();
+                break;
             }
             else
             {
@@ -100,10 +109,58 @@ void AppStartup::readJobFolder()
     } // end of if ( fileInfoList.empty() )
 }
 
-//void AppStartup::generateJob()
-//{
+void AppStartup::generateJob( QString path,
+                              Job::InspectionData& inspectionData )
+{
+    // 创建数据库对象，打开传入路径的数据库
+    SqliteDB v1Sqlite;
+    v1Sqlite.open( path.toStdString() );
 
-//}
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //1 创建Job表，表中包含字段：Version、LastEditingTime
+    string sqlCreate = "CREATE TABLE Job( Version TEXT, LastEditingTime TEXT );";
+    v1Sqlite.execute(sqlCreate);
+    // 插入各字段对应的数据
+    string sqlInsert = "INSERT INTO Job( Version, LastEditingTime ) VALUES(?,?);";
+    v1Sqlite.execute( sqlInsert, inspectionData.version(),
+                                 inspectionData.lastEditingTime() );
+
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //2 创建Board表,表中包含字段：Name、SizeX、SizeY、OriginalX、OriginalY
+    sqlCreate = "CREATE TABLE Board( Name TEXT, SizeX REAL, SizeY REAL, OriginalX REAL, OriginalY REAL );";
+    v1Sqlite.execute(sqlCreate);
+
+    sqlInsert = "INSERT INTO Board( Name, SizeX, SizeY, OriginalX, OriginalY ) VALUES(?,?,?,?,?);";
+    v1Sqlite.execute( sqlInsert,inspectionData.board().name(),
+                                inspectionData.board().sizeX(),
+                                inspectionData.board().sizeY(),
+                                inspectionData.board().originalX(),
+                                inspectionData.board().originalY() );
+
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //3 创建MeasuredObjs表,表中包含字段：Name、PosX、PosY、Width、Height
+    sqlCreate = "CREATE TABLE MeasuredObjs( Name TEXT, PosX REAL, PosY REAL, Width REAL, Height REAL );";
+    v1Sqlite.execute(sqlCreate);
+
+    sqlInsert = "INSERT INTO MeasuredObjs( Name, PosX, PosY, Width, Height ) VALUES(?,?,?,?,?);";
+    v1Sqlite.prepare(sqlInsert);
+    v1Sqlite.begin();
+
+    Job::MeasuredObj *pCurrentObj = inspectionData.board().measureObjs().pHeadObj();
+    while ( pCurrentObj != nullptr )
+    {
+        v1Sqlite.executeWithParms( pCurrentObj->name().data(),
+                                   pCurrentObj->body().posX(),
+                                   pCurrentObj->body().posY(),
+                                   pCurrentObj->body().width(),
+                                   pCurrentObj->body().height() );
+        //获取下一个检测对象的地址
+        pCurrentObj = pCurrentObj->pNextObj();
+    }
+    v1Sqlite.commit();
+
+    v1Sqlite.close();
+}
 
 //void AppStartup::loadInspectionData( const QString& path )
 //{

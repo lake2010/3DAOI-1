@@ -10,10 +10,13 @@ namespace App
 {
     /**
      *  @brief    AppStartup
-     *            软件启动：
-     *            1.加载非重要配置文件AppSetting.ini
-     *            2.加载重要配置文件CaptureSetting.ini
-     *            3.扫描程式文件夹
+     *                  软件启动：
+     *                  1.加载非重要配置文件AppSetting.ini
+     *                  2.加载重要配置文件CaptureSetting.ini
+     *                  3.扫描程式文件夹
+     *                  4.若程式文件夹无文件，则自动生成程式
+     *                  5.若程式文件夹有文件，则选择程式并加载
+     *                  6.加载成功后打印程式的检测信息到屏幕，并写入xml文件
      *  @author   plato
      *  @version  1.00 2017-12-05 plato
      *                 note:create it
@@ -65,12 +68,13 @@ namespace App
         */
         void readJobFolder();
 
-//        /*
-//        *  @brief   generateJob: 生成程式
-//        *  @param   N/A
-//        *  @return  N/A
-//        */
-//        void generateJob();
+        /*
+        *  @brief   generateJob: 生成程式
+        *  @param   path:   生成的程式路径
+        *  @return  N/A
+        */
+        void generateJob( QString path,
+                          Job::InspectionData& inspectionData );
 
 //        /*
 //        *  @brief   loadInspectionData: 加载检测数据
