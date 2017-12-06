@@ -22,7 +22,7 @@ CaptureSetting::~CaptureSetting()
 
 }
 
-void CaptureSetting::readCaptureSetting( const QString &path )
+void CaptureSetting::readCaptureSetting( const QString& path )
 {
 
     QSettings configFile( path, QSettings::IniFormat );
@@ -66,9 +66,10 @@ void CaptureSetting::readCaptureSetting( const QString &path )
     {
         this->m_imgBits = ImgBits::BIT_16;
     }
+    cout << "加载CaptureSetting.ini成功" << endl;
 }
 
-void CaptureSetting::load( const QString &path )
+void CaptureSetting::load( const QString& path )
 {
     try
     {

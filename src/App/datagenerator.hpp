@@ -15,11 +15,11 @@ namespace App
 {
     /**
      *  @brief    DataGenerator
-     *            数据生成器：
-     *            1.软件的版本信息
-     *            2.上次程式的编辑时间
-     *            3.基板的名称、大小、原点
-     *            4.所有被测对象的名称、坐标位置、大小
+     *                  数据生成器：
+     *                  1.软件的版本信息
+     *                  2.上次程式的编辑时间
+     *                  3.基板的名称、大小、原点
+     *                  4.所有被测对象的名称、坐标位置、大小
      *  @author   plato
      *  @version  1.00 2017-11-29 plato
      *                 note:create it
@@ -31,7 +31,7 @@ namespace App
         //constructor & destructor
 
         /*
-        *  @brief   DataGenerator:  构造函数
+        *  @brief   DataGenerator: 构造函数
         *  @param   N/A
         *  @return  N/A
         */
@@ -51,11 +51,13 @@ namespace App
         //member functions
 
         /*
-        *  @brief   generateData:  生成数据
-        *  @param   N/A
+        *  @brief   generateData: 生成数据
+        *  @param   inspectionData: 传入的检测数据对象
+        *           obj[]: 传入的被测对象数组
         *  @return  N/A
         */
-        void generateData();
+        void generateData( Job::InspectionData& inspectionData,
+                           Job::MeasuredObj obj[] );
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

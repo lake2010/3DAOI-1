@@ -1,10 +1,11 @@
+#include <iostream>
+
 #include <QFile>
 
 #include "appsetting.hpp"
-#include "SDK/customexception.hpp"
 
+using namespace std;
 using namespace App;
-using namespace SDK;
 
 AppSetting::AppSetting()
 {
@@ -22,7 +23,7 @@ AppSetting::~AppSetting()
 
 }
 
-void AppSetting::writeAppSetting( const QString &path )
+void AppSetting::writeAppSetting( const QString& path )
 {
     // 创建默认配置文件，设置默认值
     QSettings configFile( path, QSettings::IniFormat );
@@ -33,9 +34,11 @@ void AppSetting::writeAppSetting( const QString &path )
     configFile.setValue( "MachineType", "AOI" );
     configFile.setValue( "CompanyName", "SciJet" );
     configFile.setValue( "JobFolderPath", "../data" );
+
+    cout << "加载AppSetting.ini成功" << endl;
 }
 
-void AppSetting::readAppSetting( const QString &path )
+void AppSetting::readAppSetting( const QString& path )
 {
     QSettings configFile( path, QSettings::IniFormat );
 
@@ -132,9 +135,11 @@ void AppSetting::readAppSetting( const QString &path )
     {
         this->m_jobFolderPath = jobFolderPath.toStdString();
     }
+
+    cout << "加载AppSetting.ini成功" << endl;
 }
 
-void AppSetting::load( const QString &path )
+void AppSetting::load( const QString& path )
 {
     //1 如果文件不存在，创建默认配置文件，写入默认配置
     //2 如果文件存在，则读取配置文件

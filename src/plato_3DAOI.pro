@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     SDK/customexception.cpp \
     SDK/datahelper.cpp \
     App/datagenerator.cpp \
-    App/capturesetting.cpp
+    App/capturesetting.cpp \
+    App/appstartup.cpp
 
 HEADERS += \
     App/appsetting.hpp \
@@ -26,6 +27,7 @@ HEADERS += \
     SDK/customexception.hpp \
     SDK/datahelper.hpp \
     App/datagenerator.hpp \
-    App/capturesetting.hpp
+    App/capturesetting.hpp \
+    App/appstartup.hpp
 
 DISTFILES +=

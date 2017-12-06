@@ -18,7 +18,7 @@ MeasuredObjList::~MeasuredObjList()
 
 }
 
-void MeasuredObjList::pushHead( MeasuredObj &newObj )
+void MeasuredObjList::pushHead( MeasuredObj& newObj )
 {
     //1 如果一开始没有对象，则创建一个新对象;
     //2 如果一开始有对象，则加在该对象前面插入新对象
@@ -32,14 +32,14 @@ void MeasuredObjList::pushHead( MeasuredObj &newObj )
         //2.1 将新对象的下一对象指针指向头对象
         //2.2 将头对象的上一对象指针指向新对象
         //2.3 头对象指针指向新对象
-        (&newObj)->setPNextObj( this->m_pHeadObj );
+        ( &newObj )->setPNextObj( this->m_pHeadObj );
         this->m_pHeadObj->setpPreObj( &newObj );
         this->m_pHeadObj = &newObj;
     }
     this->m_size++;     // 列表大小加1
 }
 
-void MeasuredObjList::pushTail( MeasuredObj &newObj )
+void MeasuredObjList::pushTail( MeasuredObj& newObj )
 {
     //1 如果一开始没有对象，则创建一个新对象;
     //2 如果一开始有对象，则加在该对象后面插入新对象
@@ -54,7 +54,7 @@ void MeasuredObjList::pushTail( MeasuredObj &newObj )
         //2.2 将新对象的上一对象指针指向尾对象
         //2.3 尾对象指针指向新对象
         this->m_pTailObj->setPNextObj( &newObj );
-        (&newObj)->setpPreObj( this->m_pTailObj );
+        ( &newObj )->setpPreObj( this->m_pTailObj );
         this->m_pTailObj = &newObj;
     }
     this->m_size++;
@@ -90,7 +90,7 @@ void MeasuredObjList::print()
     // 打印列表中所有元素
     while ( pCurrentObj != nullptr )
     {
-        cout << fixed << setprecision(2)    // 精确到小数点后两位
+        cout << fixed << setprecision( 2 )    // 精确到小数点后两位
              << pCurrentObj->name() << "\t"
              << "X: " << pCurrentObj->body().posX() << "\t"
              << "Y: " << pCurrentObj->body().posY() << "\t"

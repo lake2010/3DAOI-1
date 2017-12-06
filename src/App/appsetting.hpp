@@ -36,10 +36,11 @@ namespace App
 
     /**
      *  @brief    AppSetting
-     *            应用设置：
-     *            1.包含写入、读取、加载配置文件功能
-     *            2.包含的字段：主题、语言种类、轨道模式、机器类型、公司名称、程式目录路径
-     *            3.该配置文件为功能相关的非重要配置，不影响程序启动
+     *                  应用设置：
+     *                  1.包含写入、读取、加载配置文件功能
+     *                  2.包含的字段：主题、语言种类、轨道模式、
+     *                              机器类型、公司名称、程式目录路径
+     *                  3.该配置文件为功能相关的非重要配置，不影响程序启动
      *  @author   plato
      *  @version  1.00 2017-12-03 plato
      *                 note:create it
@@ -51,7 +52,7 @@ namespace App
         //constructor & destructor
 
         /*
-        *  @brief   AppSetting:  构造函数
+        *  @brief   AppSetting: 构造函数
         *  @param   N/A
         *  @return  N/A
         */
@@ -71,25 +72,51 @@ namespace App
         //member functions
 
         /*
-        *  @brief   writeAppSetting:  写入配置文件
-        *  @param   path:   待写入的文件路径
+        *  @brief   writeAppSetting: 写入配置文件
+        *  @param   path: 待写入的文件路径
         *  @return  N/A
         */
         void writeAppSetting( const QString& path );
 
         /*
-        *  @brief   readAppSetting:  读取配置文件
-        *  @param   path:   待读取的文件路径
+        *  @brief   readAppSetting: 读取配置文件
+        *  @param   path: 待读取的文件路径
         *  @return  N/A
         */
         void readAppSetting( const QString& path );
 
         /*
-        *  @brief   load:   加载配置文件
-        *  @param   path:   待加载的文件路径
+        *  @brief   load: 加载配置文件
+        *  @param   path: 待加载的文件路径
         *  @return  N/A
         */
         void load( const QString& path );
+
+        //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //get & set functions
+
+        /*
+        *  @brief   jobFolderPath: 程式目录路径
+        *  @param   N/A
+        *  @return  传入的程式目录路径
+        */
+        std::string jobFolderPath()
+        {
+            return this->m_jobFolderPath;
+        }
+
+        /*
+        *  @brief   setJobFolderPath: 设置程式目录路径
+        *  @param   jobFolderPath: 传入的程式目录路径
+        *  @return  N/A
+        */
+        void setJobFolderPath( std::string jobFolderPath )
+        {
+            this->m_jobFolderPath = jobFolderPath;
+        }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
