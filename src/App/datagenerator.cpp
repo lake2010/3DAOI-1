@@ -45,7 +45,6 @@ void DataGenerator::generateData( InspectionData& inspectionData,
     {
         list.pushTail( obj[i] );
     }
-    list.print();
 
     // 创建基板对象，设置基板名称、大小、原点位置、被测对象列表
     Board board;

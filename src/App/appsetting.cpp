@@ -33,7 +33,7 @@ void AppSetting::writeAppSetting( const QString& path )
     configFile.setValue( "LaneMode", "DUALLANE" );
     configFile.setValue( "MachineType", "AOI" );
     configFile.setValue( "CompanyName", "SciJet" );
-    configFile.setValue( "JobFolderPath", "../data" );
+    configFile.setValue( "JobFolderPath", "../data/" );
 
     cout << "加载AppSetting.ini成功" << endl;
 }
@@ -127,9 +127,9 @@ void AppSetting::readAppSetting( const QString& path )
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //6 读取配置文件中程式目录配置，若数据不正常，则写入默认值
     QString jobFolderPath = configFile.value( "JobFolderPath" ).toString();
-    if( jobFolderPath != "../data" )
+    if( jobFolderPath != "../data/" )
     {
-        configFile.setValue( "JobFolderPath", "../data" );
+        configFile.setValue( "JobFolderPath", "../data/" );
     }
     else
     {

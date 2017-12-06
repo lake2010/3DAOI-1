@@ -11,7 +11,9 @@ namespace App
     /**
      *  @brief    AppStartup
      *            软件启动：
-     *            1.
+     *            1.加载非重要配置文件AppSetting.ini
+     *            2.加载重要配置文件CaptureSetting.ini
+     *            3.扫描程式文件夹
      *  @author   plato
      *  @version  1.00 2017-12-05 plato
      *                 note:create it
@@ -57,11 +59,25 @@ namespace App
         void loadCaptureSetting( const QString& path );
 
         /*
-        *  @brief   loadInspectionData: 加载检测数据
-        *  @param   path: 待加载的文件路径
+        *  @brief   readJobFolder: 读取程式文件夹
+        *  @param   N/A
         *  @return  N/A
         */
-        void loadInspectionData( const QString& path );
+        void readJobFolder();
+
+//        /*
+//        *  @brief   generateJob: 生成程式
+//        *  @param   N/A
+//        *  @return  N/A
+//        */
+//        void generateJob();
+
+//        /*
+//        *  @brief   loadInspectionData: 加载检测数据
+//        *  @param   path: 待加载的文件路径
+//        *  @return  N/A
+//        */
+//        void loadInspectionData( const QString& path );
 
         /*
         *  @brief   writeToXml: 检测数据写入xml文件
