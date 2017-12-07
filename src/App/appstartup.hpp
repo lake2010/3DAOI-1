@@ -1,6 +1,8 @@
 #ifndef APPSTARTUP_HPP
 #define APPSTARTUP_HPP
 
+#include "DB/sqlitedb.hpp"
+
 #include "Job/inspectiondata.hpp"
 #include "appsetting.hpp"
 #include "capturesetting.hpp"
@@ -76,20 +78,25 @@ namespace App
         void generateJob( QString path,
                           Job::InspectionData& inspectionData );
 
-//        /*
-//        *  @brief   loadInspectionData: 加载检测数据
-//        *  @param   path: 待加载的文件路径
-//        *  @return  N/A
-//        */
-//        void loadInspectionData( const QString& path );
+        /*
+        *  @brief   loadInspectionData: 加载检测数据
+        *  @param   sqlite: 传入的数据库对象
+        *           inspectionData: 传入的检测数据对象
+        *           objs[]: 传入的被测对象数组
+        *           objCnt: 传入的被测对象个数
+        *  @return  N/A
+        */
+        void loadInspectionData( SSDK::DB::SqliteDB& sqlite,
+                                 Job::InspectionData& inspectionData,
+                                 Job::MeasuredObj objs[], int objCnt );
 
         /*
         *  @brief   writeToXml: 检测数据写入xml文件
-        *  @param   fileName: 待写入的文件路径
+        *  @param   path: 待写入的文件路径
         *           inspectionData: 传入的检测数据对象
         *  @return  N/A
         */
-        void writeToXml( QString fileName,
+        void writeToXml( QString path,
                          Job::InspectionData& inspectionData );
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

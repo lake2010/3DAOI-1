@@ -14,3 +14,8 @@
 - 读取成功后把所有的InspectionData信息同时以xml格式输出
     1. 输出到JobFolderPath，同名后缀名不同
     2. 格式请参考BoardData.xml，调用使用Qt的XML库
+
+- 注意：
+如果软件未能正常启动，提示“检测功能不可用，请重新配置！”；
+这是因为缺少功能相关的重要配置文件，导致加载失败，解决方案如下：
+将该文件所在目录下的CaptureSetting.ini复制到src/Setting目录下即可
