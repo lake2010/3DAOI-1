@@ -142,11 +142,11 @@ void AppStartup::generateJob( QString path,
                                      inspectionData.board().originalY() );
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //3 创建MeasuredObjs表，表中包含字段：Name、PosX、PosY、Width、Height
-        sqlCreate = "CREATE TABLE MeasuredObjs( Name TEXT, PosX REAL, PosY REAL, Width REAL, Height REAL );";
+        //3 创建MeasuredObjs表，表中包含字段：Name、PosX、PosY、Width、Height、Angle
+        sqlCreate = "CREATE TABLE MeasuredObjs( Name TEXT, PosX REAL, PosY REAL, Width REAL, Height REAL, Angle REAL );";
         v1Sqlite.execute( sqlCreate );
 
-        sqlInsert = "INSERT INTO MeasuredObjs( Name, PosX, PosY, Width, Height ) VALUES(?,?,?,?,?);";
+        sqlInsert = "INSERT INTO MeasuredObjs( Name, PosX, PosY, Width, Height, Angle ) VALUES(?,?,?,?,?,?);";
         v1Sqlite.prepare( sqlInsert );
         v1Sqlite.begin();
 
@@ -157,7 +157,8 @@ void AppStartup::generateJob( QString path,
                                        pCurrentObj->body().posX(),
                                        pCurrentObj->body().posY(),
                                        pCurrentObj->body().width(),
-                                       pCurrentObj->body().height() );
+                                       pCurrentObj->body().height(),
+                                       pCurrentObj->body().angle() );
             //获取下一个检测对象的地址
             pCurrentObj = pCurrentObj->pNextObj();
         }
@@ -193,7 +194,16 @@ void AppStartup::loadInspectionData( QString path )
             // 读取版本
             string selectedString = "select Version from Job";
             sqlite.prepare( selectedString );
-            this->m_inspectionData.setVersion( sqlite.executeScalar<string>( selectedString ) );
+            string version = sqlite.executeScalar<string>( selectedString );
+
+            // 兼容V1版本
+            if( version == "V1" )
+            {
+                version = "V1[兼容模式]";
+                convertFromV1( sqlite );
+                cout << "版本兼容成功!" << endl;
+            }
+            this->m_inspectionData.setVersion( version );
 
             // 读取上次编辑时间
             selectedString = "select LastEditingTime from Job";
@@ -235,6 +245,7 @@ void AppStartup::loadInspectionData( QString path )
                 this->m_pMeasuredObj[i].body().setPosY( boost::get<double>( sqlite.columnValue(2) ) );
                 this->m_pMeasuredObj[i].body().setWidth( boost::get<double>( sqlite.columnValue(3) ) );
                 this->m_pMeasuredObj[i].body().setHeight( boost::get<double>( sqlite.columnValue(4) ) );
+                this->m_pMeasuredObj[i].body().setAngle( boost::get<double>( sqlite.columnValue(5) ) );
 
                 this->m_inspectionData.board().measureObjs().pushTail( this->m_pMeasuredObj[i] );
             }
@@ -289,5 +300,16 @@ void AppStartup::writeToXml( QString path,
     {
         THROW_EXCEPTION( ex.what() );
     }
+}
+
+void AppStartup::convertFromV1( SqliteDB& sqlite )
+{
+    // 将Job表的版本号改为V2
+    string sqlUpdate = "UPDATE Job SET Version='V1[兼容模式]'";
+    sqlite.execute( sqlUpdate );
+
+    // 在MeasuredObjs表中添加Angle字段，并设置默认值为0
+    string addColumn = "ALTER TABLE MeasuredObjs ADD Angle REAL DEFAULT 0";
+    sqlite.execute( addColumn );
 }
 

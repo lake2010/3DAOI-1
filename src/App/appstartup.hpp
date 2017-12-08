@@ -20,7 +20,7 @@ namespace App
      *                  5.若程式文件夹有文件，则选择程式并加载
      *                  6.加载成功后打印程式的检测信息到屏幕，并写入xml文件
      *  @author   plato
-     *  @version  1.00 2017-12-05 plato
+     *  @version  2.00 2017-12-05 plato
      *                 note:create it
      */
     class AppStartup
@@ -93,6 +93,13 @@ namespace App
         */
         void writeToXml( QString path,
                          Job::InspectionData& inspectionData );
+
+        /*
+        *  @brief   convertFromV1: 版本转换
+        *  @param   sqlite: 传入的数据库对象
+        *  @return  N/A
+        */
+        void convertFromV1( SSDK::DB::SqliteDB& sqlite );
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

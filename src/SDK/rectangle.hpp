@@ -7,7 +7,7 @@ namespace SDK
      *  @brief    Rectangle
      *                  设置矩形的坐标、大小、角度
      *  @author   plato
-     *  @version  1.00 2017-11-22 plato
+     *  @version  2.00 2017-11-22 plato
      *                 note:create it
      */
     class Rectangle

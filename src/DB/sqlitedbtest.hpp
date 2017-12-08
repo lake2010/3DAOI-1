@@ -12,7 +12,7 @@
 // *  @brief A test class for SqliteDB
 // *
 // *  @author rime
-// *  @version 1.00 2017-04-05 rime
+// *  @version 2.00 2017-04-05 rime
 // *                note:create it
 //*/
 //    namespace SSDK

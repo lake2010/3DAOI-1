@@ -13,7 +13,7 @@ namespace SSDK
          *  @brief 代表了数据库中存储的二进制对象
          *
          *  @author rime
-         *  @version 1.00 2017-05-10 author
+         *  @version 2.00 2017-05-10 author
          *                note:create it
          */
         struct Blob

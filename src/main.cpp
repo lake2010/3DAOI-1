@@ -34,7 +34,7 @@ int main()
             app.dataGenerator().generateData( app.inspectionData(),
                                               app.pMeasuredObj() );
             // 设置程式路径
-            app.setJobPath( app.appSetting().jobFolderPath() + "V1" );
+            app.setJobPath( app.appSetting().jobFolderPath() + "V2" );
             // 生成默认程式
             app.generateJob( app.jobPath(), app.inspectionData() );
             cout << "文件夹中无程式，已生成默认程式！" << endl;

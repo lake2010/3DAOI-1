@@ -12,7 +12,7 @@ namespace Job
      *                  被测对象：
      *                  类中包含被测对象名、本体信息、上一对象指针和下一对象指针
      *  @author   plato
-     *  @version  1.00 2017-11-22 plato
+     *  @version  2.00 2017-11-22 plato
      *                 note:create it
      */
     class MeasuredObj
