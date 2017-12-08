@@ -103,7 +103,7 @@ namespace App
         *  @param   N/A
         *  @return  传入的程式目录路径
         */
-        std::string jobFolderPath()
+        QString jobFolderPath()
         {
             return this->m_jobFolderPath;
         }
@@ -113,7 +113,7 @@ namespace App
         *  @param   jobFolderPath: 传入的程式目录路径
         *  @return  N/A
         */
-        void setJobFolderPath( std::string jobFolderPath )
+        void setJobFolderPath( QString jobFolderPath )
         {
             this->m_jobFolderPath = jobFolderPath;
         }
@@ -121,12 +121,12 @@ namespace App
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private:
-        Theme m_theme;                  // 主题
-        Lang m_lang;                    // 语言种类
-        LaneMode m_laneMode;            // 轨道模式
-        MachineType m_machineType;      // 机器类型
-        std::string m_companyName;      // 公司名称
-        std::string m_jobFolderPath;    // 程式文件夹路径
+        Theme m_theme;              // 主题
+        Lang m_lang;                // 语言种类
+        LaneMode m_laneMode;        // 轨道模式
+        MachineType m_machineType;  // 机器类型
+        QString m_companyName;      // 公司名称
+        QString m_jobFolderPath;    // 程式文件夹路径
     };
 
 }//End of namespace App

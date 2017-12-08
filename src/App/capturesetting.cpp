@@ -11,7 +11,7 @@ using namespace SDK;
 
 CaptureSetting::CaptureSetting()
 {
-    // 初始化成员变量
+    // 成员变量初始化
     this->m_imgWidth = 0;
     this->m_imgHeight = 0;
     this->m_imgBits = ImgBits::BIT_8;
@@ -85,9 +85,8 @@ void CaptureSetting::load( const QString& path )
         }
     }
     catch( const CustomException& ex )
-    {
-        cout << ex.what() << endl;
+    {        
         cout << "检测功能不可用，请重新配置！" << endl;
-        exit(1);    // 捕获异常后直接退出程序
+        THROW_EXCEPTION( ex.what() );
     }
 }

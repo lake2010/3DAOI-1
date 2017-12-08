@@ -19,8 +19,7 @@ Board::~Board()
 
 }
 
-void Board::writeToXml( QDomDocument& job,
-                        QDomElement& root )
+void Board::writeToXml( QDomDocument& job, QDomElement& root )
 {
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //1 创建基板信息的节点及其属性，并作为传入的根节点的子节点

@@ -7,6 +7,7 @@ using namespace Job;
 
 InspectionData::InspectionData()
 {
+    // 成员变量初始化
     this->m_version = "";
     this->m_lastEditingTime = "";
 }

@@ -48,8 +48,7 @@ namespace Job
         *           root: 根节点
         *  @return  N/A
         */
-        void writeToXml( QDomDocument &job,
-                         QDomElement &root );
+        void writeToXml( QDomDocument& job, QDomElement& root );
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

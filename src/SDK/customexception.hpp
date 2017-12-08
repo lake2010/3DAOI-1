@@ -3,20 +3,20 @@
 
 #include <sstream>
 
-// 定义一个宏函数，用于传递异常信息
-#define THROW_EXCEPTION(exMsg)\
-{\
-    std::ostringstream message;\
-    message<<"File:"<<__FILE__<<"\n"\
-           <<"Line:"<<__LINE__<<"\n"\
-           <<"Func:"<<__FUNCTION__<<"\n"\
-           <<"Detail:"<<exMsg<<"\n";\
-    std::string msg = message.str();\
-    throw SDK::CustomException(msg);\
-}
-
 namespace SDK
 {
+    // 定义一个宏函数，用于传递异常信息
+    #define THROW_EXCEPTION(exMsg)\
+    {\
+        std::ostringstream message;\
+        message<<"File:"<<__FILE__<<"\n"\
+               <<"Line:"<<__LINE__<<"\n"\
+               <<"Func:"<<__FUNCTION__<<"\n"\
+               <<"Detail:"<<exMsg<<"\n";\
+        std::string msg = message.str();\
+        throw SDK::CustomException(msg);\
+    }
+
     /**
      *  @brief    CustomException
      *                  继承标准异常类exception,用于捕获异常，输出异常信息

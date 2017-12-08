@@ -9,7 +9,7 @@ using namespace App;
 
 AppSetting::AppSetting()
 {
-    // 初始化成员变量
+    // 成员变量初始化
     this->m_theme = Theme::BLACK;
     this->m_lang = Lang::CN;
     this->m_laneMode = LaneMode::DUAL_LANE;
@@ -121,7 +121,7 @@ void AppSetting::readAppSetting( const QString& path )
     }
     else
     {
-        this->m_companyName = companyName.toStdString();
+        this->m_companyName = companyName;
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ void AppSetting::readAppSetting( const QString& path )
     }
     else
     {
-        this->m_jobFolderPath = jobFolderPath.toStdString();
+        this->m_jobFolderPath = jobFolderPath;
     }
 
     cout << "加载AppSetting.ini成功" << endl;

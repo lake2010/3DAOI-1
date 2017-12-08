@@ -64,11 +64,11 @@ namespace App
         void loadCaptureSetting( const QString& path );
 
         /*
-        *  @brief   readJobFolder: 读取程式文件夹
+        *  @brief   readJobPath: 读取程式路径
         *  @param   N/A
         *  @return  N/A
         */
-        void readJobFolder();
+        void readJobPath();
 
         /*
         *  @brief   generateJob: 生成程式
@@ -80,15 +80,10 @@ namespace App
 
         /*
         *  @brief   loadInspectionData: 加载检测数据
-        *  @param   sqlite: 传入的数据库对象
-        *           inspectionData: 传入的检测数据对象
-        *           objs[]: 传入的被测对象数组
-        *           objCnt: 传入的被测对象个数
+        *  @param   path: 待加载的检测数据的路径
         *  @return  N/A
         */
-        void loadInspectionData( SSDK::DB::SqliteDB& sqlite,
-                                 Job::InspectionData& inspectionData,
-                                 Job::MeasuredObj objs[], int objCnt );
+        void loadInspectionData( QString path );
 
         /*
         *  @brief   writeToXml: 检测数据写入xml文件
@@ -104,6 +99,16 @@ namespace App
 
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //get & set functions
+
+        /*
+        *  @brief   appSetting: 软件配置
+        *  @param   N/A
+        *  @return  软件配置
+        */
+        AppSetting& appSetting()
+        {
+            return this->m_appSetting;
+        }
 
         /*
         *  @brief   appSettingPath: 软件配置文件路径
@@ -145,13 +150,68 @@ namespace App
             this->m_captureSettingPath = captureSettingPath;
         }
 
+        /*
+        *  @brief   inspectionData: 检测数据
+        *  @param   N/A
+        *  @return  检测数据
+        */
+        Job::InspectionData& inspectionData()
+        {
+            return this->m_inspectionData;
+        }
+
+        /*
+        *  @brief   pMeasuredObj: 被测对象指针
+        *  @param   N/A
+        *  @return  被测对象指针
+        */
+        Job::MeasuredObj *pMeasuredObj()
+        {
+            return this->m_pMeasuredObj;
+        }
+
+        /*
+        *  @brief   dataGenerator: 数据生成器
+        *  @param   N/A
+        *  @return  数据生成器
+        */
+        DataGenerator& dataGenerator()
+        {
+            return this->m_dataGenerator;
+        }
+
+        /*
+        *  @brief   jobPath: 程式路径
+        *  @param   N/A
+        *  @return  扫描的程式路径
+        */
+        QString& jobPath()
+        {
+            return this->m_jobPath;
+        }
+
+        /*
+        *  @brief   setJobPath: 设置程式路径
+        *  @param   jobPath: 传入的程式路径路径
+        *  @return  N/A
+        */
+        void setJobPath( QString jobPath )
+        {
+            this->m_jobPath = jobPath;
+        }
+
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private:
-        AppSetting m_appSetting;          // 软件配置
-        CaptureSetting m_captureSetting;  // 图像配置
-        QString m_appSettingPath;         // 软件配置文件路径
-        QString m_captureSettingPath;     // 图像配置文件路径
+        AppSetting m_appSetting;                // 软件配置
+        CaptureSetting m_captureSetting;        // 图像配置
+        QString m_appSettingPath;               // 软件配置文件路径
+        QString m_captureSettingPath;           // 图像配置文件路径
+
+        Job::InspectionData m_inspectionData;   // 检测数据
+        Job::MeasuredObj *m_pMeasuredObj;       // 被测对象指针
+        DataGenerator m_dataGenerator;          // 数据生成器
+        QString m_jobPath;                      // 记录扫描的程式路径
     };
 
 }//End of namespace App
