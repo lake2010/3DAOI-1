@@ -45,7 +45,7 @@ Qt 5.9.0
     └── doc                         // 文档
 ```
 ## Version
-v1.0
+v2.0
 
 ## Instructions
 - 启动软件，加载AppSetting.ini和CaptureSetting.ini，考虑其中异常如何处理
