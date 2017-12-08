@@ -42,7 +42,7 @@ namespace App
      *                              机器类型、公司名称、程式目录路径
      *                  3.该配置文件为功能相关的非重要配置，不影响程序启动
      *  @author   plato
-     *  @version  1.00 2017-12-03 plato
+     *  @version  2.00 2017-12-03 plato
      *                 note:create it
      */
     class AppSetting

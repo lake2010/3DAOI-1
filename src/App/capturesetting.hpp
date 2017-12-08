@@ -19,7 +19,7 @@ namespace App
      *                  2.包含的字段：图像的面阵宽度和高度、图像位数
      *                  3.该配置文件为功能相关的重要配置，若配置异常，直接退出程序
      *  @author   plato
-     *  @version  1.00 2017-12-03 plato
+     *  @version  2.00 2017-12-03 plato
      *                 note:create it
      */
     class CaptureSetting

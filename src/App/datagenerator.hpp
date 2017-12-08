@@ -19,9 +19,9 @@ namespace App
      *                  1.软件的版本信息
      *                  2.上次程式的编辑时间
      *                  3.基板的名称、大小、原点
-     *                  4.所有被测对象的名称、坐标位置、大小
+     *                  4.所有被测对象的名称、坐标位置、大小、角度
      *  @author   plato
-     *  @version  1.00 2017-11-29 plato
+     *  @version  2.00 2017-11-29 plato
      *                 note:create it
      */
     class DataGenerator

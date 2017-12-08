@@ -45,7 +45,7 @@ void Board::writeToXml( QDomDocument& job, QDomElement& root )
         // 创建第二个子节点及其子元素（记录被测对象信息）
         QDomElement measuredObj = job.createElement( QString::fromStdString(
                                                      pCurrentObj->name() ) );
-        // 创建第二个子节点的属性（被测对象坐标、宽、高）,精确到小数点后两位
+        // 创建第二个子节点的属性（被测对象坐标、宽、高、角度）,精确到小数点后两位
         measuredObj.setAttribute( "PosX", QString::number(
                                           pCurrentObj->body().posX(), 0, 2 ) );
         measuredObj.setAttribute( "PosY", QString::number(
@@ -54,6 +54,8 @@ void Board::writeToXml( QDomDocument& job, QDomElement& root )
                                            pCurrentObj->body().width(), 0, 2 ) );
         measuredObj.setAttribute( "Height", QString::number(
                                             pCurrentObj->body().height(), 0, 2 ) );
+        measuredObj.setAttribute( "Angle", QString::number(
+                                           pCurrentObj->body().angle(), 0, 2 ) );
         // 添加节点measuredObj作为子节点child的子节点
         child.appendChild( measuredObj );
 

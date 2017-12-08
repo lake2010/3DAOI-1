@@ -102,6 +102,7 @@ void MeasuredObjList::print()
              << "Y: " << pCurrentObj->body().posY() << "\t"
              << "Width: " << pCurrentObj->body().width() << "\t"
              << "Height: " << pCurrentObj->body().height() << "\t"
+             << "Angle: " << pCurrentObj->body().angle() << "\t"
              << endl;
         // 当前对象的下一对象替换为当前对象
         pCurrentObj = pCurrentObj->pNextObj();
