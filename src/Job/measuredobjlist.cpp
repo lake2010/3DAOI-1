@@ -18,8 +18,9 @@ MeasuredObjList::~MeasuredObjList()
 
 }
 
-void MeasuredObjList::pushHead( MeasuredObj &newObj )
+void MeasuredObjList::pushHead( MeasuredObj& newObj )
 {
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //1 如果一开始没有对象，则创建一个新对象;
     //2 如果一开始有对象，则加在该对象前面插入新对象
     if ( this->m_pHeadObj == nullptr )
@@ -29,18 +30,20 @@ void MeasuredObjList::pushHead( MeasuredObj &newObj )
     }    
     else
     {
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2.1 将新对象的下一对象指针指向头对象
         //2.2 将头对象的上一对象指针指向新对象
         //2.3 头对象指针指向新对象
-        (&newObj)->setPNextObj( this->m_pHeadObj );
+        ( &newObj )->setPNextObj( this->m_pHeadObj );
         this->m_pHeadObj->setpPreObj( &newObj );
         this->m_pHeadObj = &newObj;
     }
     this->m_size++;     // 列表大小加1
 }
 
-void MeasuredObjList::pushTail( MeasuredObj &newObj )
+void MeasuredObjList::pushTail( MeasuredObj& newObj )
 {
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //1 如果一开始没有对象，则创建一个新对象;
     //2 如果一开始有对象，则加在该对象后面插入新对象
     if ( this->m_pHeadObj == nullptr )
@@ -50,11 +53,12 @@ void MeasuredObjList::pushTail( MeasuredObj &newObj )
     }    
     else
     {
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2.1 将尾对象的下一对象指针指向新对象
         //2.2 将新对象的上一对象指针指向尾对象
         //2.3 尾对象指针指向新对象
         this->m_pTailObj->setPNextObj( &newObj );
-        (&newObj)->setpPreObj( this->m_pTailObj );
+        ( &newObj )->setpPreObj( this->m_pTailObj );
         this->m_pTailObj = &newObj;
     }
     this->m_size++;
@@ -62,6 +66,7 @@ void MeasuredObjList::pushTail( MeasuredObj &newObj )
 
 void MeasuredObjList::pullTail()
 {
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //1 如果一开始没有对象，则结束此函数;
     //2 如果列表中只有一个对象，则删除此对象;
     //3 如果列表中有多个对象
@@ -75,6 +80,7 @@ void MeasuredObjList::pullTail()
     }   
     else
     {
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.1 尾对象的上一对象替换为尾对象
         //3.2 将尾对象的下一对象指针置为nullptr
         this->m_pTailObj = this->m_pTailObj->pPreObj();
@@ -90,7 +96,7 @@ void MeasuredObjList::print()
     // 打印列表中所有元素
     while ( pCurrentObj != nullptr )
     {
-        cout << fixed << setprecision(2)    // 精确到小数点后两位
+        cout << fixed << setprecision( 2 )    // 精确到小数点后两位
              << pCurrentObj->name() << "\t"
              << "X: " << pCurrentObj->body().posX() << "\t"
              << "Y: " << pCurrentObj->body().posY() << "\t"

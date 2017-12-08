@@ -1,45 +1,65 @@
 #include <iostream>
 
+#include "App/appstartup.hpp"
 #include "SDK/customexception.hpp"
-#include "App/datagenerator.hpp"
-#include "App/appsetting.hpp"
-#include "App/capturesetting.hpp"
 
 using namespace std;
 using namespace App;
-using namespace Job;
 using namespace SDK;
-
-//void func()
-//{
-//    THROW_EXCEPTION("Argument invaild!");
-//}
 
 int main()
 {
-//    try
-//    {
-//        func();
-//    }
+    try
+    {
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //1 启动软件，设置配置文件的路径
+        AppStartup app;
+        app.setAppSettingPath( "../src/Setting/AppSetting.ini" );
+        app.setCaptureSettingPath( "../src/Setting/CaptureSetting.ini" );
 
-//    catch(SDK::CustomException& ex)
-//    {
-//        cout << ex.what() << endl;
-//    }
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2 加载两个配置文件
+        app.loadAppSetting( app.appSettingPath() );
+        app.loadCaptureSetting( app.captureSettingPath() );
 
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //3 读取程式文件夹目录下的程式
+        app.readJobPath();
 
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //4 如果目录下无程式，则生成默认程式；如果有程式，加载用户选择的程式
+        if ( app.jobPath() == "" )
+        {
+            // 生成随机数据
+            app.dataGenerator().generateData( app.inspectionData(),
+                                              app.pMeasuredObj() );
+            // 设置程式路径
+            app.setJobPath( app.appSetting().jobFolderPath() + "V1" );
+            // 生成默认程式
+            app.generateJob( app.jobPath(), app.inspectionData() );
+            cout << "文件夹中无程式，已生成默认程式！" << endl;
+        }
+        else
+        {
+            // 加载检测数据
+            app.loadInspectionData( app.jobPath() );
+            cout << "程式加载成功！" << endl;
+        }
 
-    AppSetting app;
-    app.load( "../src/AppSetting.ini" );
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //5 打印检测数据到屏幕
+        cout << endl << "检测信息如下：" << endl;
+        app.inspectionData().print();
 
-    CaptureSetting capture;
-    capture.load( "../src/CaptureSetting.ini" );
-
-    DataGenerator data;
-    data.generateData();
-
-
-
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //6 将检测数据以xml格式输出
+        app.writeToXml( app.jobPath() + ".xml", app.inspectionData() );
+        cout << endl << "XML写入成功！" << endl;
+    }
+    catch( const CustomException& ex )
+    {
+        cout << ex.what() << endl;
+    }
     return 0;
 }
 

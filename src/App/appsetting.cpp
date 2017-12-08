@@ -1,14 +1,15 @@
+#include <iostream>
+
 #include <QFile>
 
 #include "appsetting.hpp"
-#include "SDK/customexception.hpp"
 
+using namespace std;
 using namespace App;
-using namespace SDK;
 
 AppSetting::AppSetting()
 {
-    // 初始化成员变量
+    // 成员变量初始化
     this->m_theme = Theme::BLACK;
     this->m_lang = Lang::CN;
     this->m_laneMode = LaneMode::DUAL_LANE;
@@ -22,7 +23,7 @@ AppSetting::~AppSetting()
 
 }
 
-void AppSetting::writeAppSetting( const QString &path )
+void AppSetting::writeAppSetting( const QString& path )
 {
     // 创建默认配置文件，设置默认值
     QSettings configFile( path, QSettings::IniFormat );
@@ -32,10 +33,12 @@ void AppSetting::writeAppSetting( const QString &path )
     configFile.setValue( "LaneMode", "DUALLANE" );
     configFile.setValue( "MachineType", "AOI" );
     configFile.setValue( "CompanyName", "SciJet" );
-    configFile.setValue( "JobFolderPath", "../data" );
+    configFile.setValue( "JobFolderPath", "../data/" );
+
+    cout << "加载AppSetting.ini成功" << endl;
 }
 
-void AppSetting::readAppSetting( const QString &path )
+void AppSetting::readAppSetting( const QString& path )
 {
     QSettings configFile( path, QSettings::IniFormat );
 
@@ -118,23 +121,25 @@ void AppSetting::readAppSetting( const QString &path )
     }
     else
     {
-        this->m_companyName = companyName.toStdString();
+        this->m_companyName = companyName;
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //6 读取配置文件中程式目录配置，若数据不正常，则写入默认值
     QString jobFolderPath = configFile.value( "JobFolderPath" ).toString();
-    if( jobFolderPath != "../data" )
+    if( jobFolderPath != "../data/" )
     {
-        configFile.setValue( "JobFolderPath", "../data" );
+        configFile.setValue( "JobFolderPath", "../data/" );
     }
     else
     {
-        this->m_jobFolderPath = jobFolderPath.toStdString();
+        this->m_jobFolderPath = jobFolderPath;
     }
+
+    cout << "加载AppSetting.ini成功" << endl;
 }
 
-void AppSetting::load( const QString &path )
+void AppSetting::load( const QString& path )
 {
     //1 如果文件不存在，创建默认配置文件，写入默认配置
     //2 如果文件存在，则读取配置文件

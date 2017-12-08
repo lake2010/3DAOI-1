@@ -14,11 +14,10 @@ DataGenerator::~DataGenerator()
 
 }
 
-void DataGenerator::generateData()
+void DataGenerator::generateData( InspectionData& inspectionData,
+                                  MeasuredObj obj[] )
 {
-
-    // 创建被测物对象，设置被测对象名称、本体信息（矩形的长宽、坐标）
-    MeasuredObj obj[OBJ_CNT];
+    // 通过传入的被测物数组对象参数，设置被测对象名称、本体信息（矩形的长宽、坐标）
     char objName[10];
     for ( int i = 0; i < OBJ_CNT; ++i )
     {
@@ -46,7 +45,6 @@ void DataGenerator::generateData()
     {
         list.pushTail( obj[i] );
     }
-    list.print();
 
     // 创建基板对象，设置基板名称、大小、原点位置、被测对象列表
     Board board;
@@ -57,12 +55,8 @@ void DataGenerator::generateData()
     board.setOriginalY( DataHelper::generateRandomNum() );
     board.setMeasureObjs( list );
 
-    // 创建检测数据对象，设置版本信息、上次程式编辑时间、基板信息
-    InspectionData inspectionData;
+    // 通过传入的检测数据对象参数，设置版本信息、上次程式编辑时间、基板信息
     inspectionData.setVersion( "V1" );
     inspectionData.setLastEditingTime( DataHelper::generateTime() );
     inspectionData.setBoard( board );
-
-    inspectionData.writeToXml( "../data/V1.xml" );
-
 }

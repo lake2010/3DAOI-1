@@ -9,8 +9,8 @@ namespace Job
 {
     /**
      *  @brief    MeasuredObj
-     *            被测对象：
-     *            类中包含被测对象名、本体信息、上一对象指针和下一对象指针
+     *                  被测对象：
+     *                  类中包含被测对象名、本体信息、上一对象指针和下一对象指针
      *  @author   plato
      *  @version  1.00 2017-11-22 plato
      *                 note:create it
@@ -23,7 +23,7 @@ namespace Job
         //constructor & destructor
 
         /*
-        *  @brief   MeasuredObj:  构造函数
+        *  @brief   MeasuredObj: 构造函数
         *  @param   N/A
         *  @return  N/A
         */
@@ -43,7 +43,7 @@ namespace Job
         //get & set functions
 
         /*
-        *  @brief   name:   被测对象名
+        *  @brief   name: 被测对象名
         *  @param   N/A
         *  @return  传入的被测对象名
         */
@@ -53,8 +53,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setName:    设置被测对象名
-        *  @param   name:       传入的被测对象名
+        *  @brief   setName: 设置被测对象名
+        *  @param   name: 传入的被测对象名
         *  @return  N/A
         */
         void setName( std::string name )
@@ -63,19 +63,19 @@ namespace Job
         }
 
         /*
-        *  @brief   body:   本体信息
-        *                   本体中包含X、Y坐标、宽度、高度、角度信息
+        *  @brief   body: 本体信息
+        *                 本体中包含X、Y坐标、宽度、高度、角度信息
         *  @param   N/A
         *  @return  传入的本体信息
         */
-        SDK::Rectangle body()
+        SDK::Rectangle& body()
         {
             return this->m_body;
         }
 
         /*
-        *  @brief   setBody:    设置本体的信息
-        *  @param   body:       传入的本体信息
+        *  @brief   setBody: 设置本体的信息
+        *  @param   body: 传入的本体信息
         *  @return  N/A
         */
         void setBody( SDK::Rectangle body )
@@ -84,41 +84,41 @@ namespace Job
         }
 
         /*
-        *  @brief   pNextObj:   下一对象指针
+        *  @brief   pNextObj: 下一对象指针
         *  @param   N/A
         *  @return  传入的下一对象指针
         */
-        MeasuredObj* pNextObj()
+        MeasuredObj *pNextObj()
         {
             return this->m_pNextObj;
         }
 
         /*
-        *  @brief   setpNextObj:    设置下一对象指针
-        *  @param   pNextObj:       传入的下一对象指针
+        *  @brief   setpNextObj: 设置下一对象指针
+        *  @param   pNextObj: 传入的下一对象指针
         *  @return  N/A
         */
-        void setPNextObj( MeasuredObj* pNextObj )
+        void setPNextObj( MeasuredObj *pNextObj )
         {
             this->m_pNextObj = pNextObj;
         }
 
         /*
-        *  @brief   pPreObj:    上一对象指针
+        *  @brief   pPreObj: 上一对象指针
         *  @param   N/A
         *  @return  传入的上一对象指针
         */
-        MeasuredObj* pPreObj()
+        MeasuredObj *pPreObj()
         {
             return this->m_pPreObj;
         }
 
         /*
         *  @brief   setpPreObj: 设置上一对象指针
-        *  @param   pPreObj:    传入的上一对象指针
+        *  @param   pPreObj: 传入的上一对象指针
         *  @return  N/A
         */
-        void setpPreObj( MeasuredObj* pPreObj )
+        void setpPreObj( MeasuredObj *pPreObj )
         {
             this->m_pPreObj = pPreObj;
         }
@@ -128,8 +128,8 @@ namespace Job
     private:
         std::string m_name;         // 被测对象名
         SDK::Rectangle m_body;      // 本体信息
-        MeasuredObj* m_pNextObj;    // 下一对象指针
-        MeasuredObj* m_pPreObj;     // 上一对象指针
+        MeasuredObj *m_pNextObj;    // 下一对象指针
+        MeasuredObj *m_pPreObj;     // 上一对象指针
     };
 
 }//End of namespace Job

@@ -7,9 +7,9 @@ namespace SDK
 {
     /**
      *  @brief    DataHelper
-     *            数据助手：
-     *            1.生成随机数
-     *            2.生成当前系统时间
+     *                  数据助手：
+     *                  1.生成随机数
+     *                  2.生成当前系统时间
      *  @author   plato
      *  @version  1.00 2017-11-29 plato
      *                 note:create it
@@ -21,7 +21,7 @@ namespace SDK
         //constructor & destructor
 
         /*
-        *  @brief   DataHelper:  构造函数
+        *  @brief   DataHelper: 构造函数
         *  @param   N/A
         *  @return  N/A
         */
@@ -41,14 +41,14 @@ namespace SDK
         //member functions
 
         /*
-        *  @brief   generateRandomNum:  生成随机数
+        *  @brief   generateRandomNum: 生成随机数
         *  @param   N/A
         *  @return  生成的随机数
         */
         static double generateRandomNum();
 
         /*
-        *  @brief   generateTime:  生成时间
+        *  @brief   generateTime: 生成时间
         *  @param   N/A
         *  @return  生成的时间
         */

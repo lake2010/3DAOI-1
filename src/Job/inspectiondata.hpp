@@ -7,9 +7,9 @@ namespace Job
 {
     /**
      *  @brief    InspectionData
-     *            检测数据：
-     *            1.类中包含版本信息、上次编辑时间、基板信息
-     *            2.实现将检测数据写入xml文件的功能
+     *                  检测数据：
+     *                  1.类中包含版本信息、上次编辑时间、基板信息
+     *                  2.实现将检测数据写入xml文件的功能
      *  @author   plato
      *  @version  1.00 2017-12-02 plato
      *                 note:create it
@@ -21,7 +21,7 @@ namespace Job
         //constructor & destructor
 
         /*
-        *  @brief   InspectionData:  构造函数
+        *  @brief   InspectionData: 构造函数
         *  @param   N/A
         *  @return  N/A
         */
@@ -41,11 +41,18 @@ namespace Job
         //member functions
 
         /*
-        *  @brief   writeToXml:  检测数据写入xml文件
-        *  @param   fileName:    文件路径
+        *  @brief   writeToXml: 检测数据写入xml文件
+        *  @param   job: 创建的Job文档
         *  @return  N/A
         */
-        void writeToXml( QString fileName );
+        void writeToXml( QDomDocument& job );
+
+        /*
+        *  @brief   print: 打印检测数据
+        *  @param   N/A
+        *  @return  N/A
+        */
+        void print();
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -54,7 +61,7 @@ namespace Job
         //get & set functions
 
         /*
-        *  @brief   version:   检测程式的版本
+        *  @brief   version: 检测程式的版本
         *  @param   N/A
         *  @return  传入的版本
         */
@@ -64,8 +71,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setVersion:    设置检测程式的版本
-        *  @param   version:       传入的版本
+        *  @brief   setVersion: 设置检测程式的版本
+        *  @param   version: 传入的版本
         *  @return  N/A
         */
         void setVersion( std::string version )
@@ -74,7 +81,7 @@ namespace Job
         }
 
         /*
-        *  @brief   lastEditingTime:   上一次编辑时间
+        *  @brief   lastEditingTime: 上一次编辑时间
         *  @param   N/A
         *  @return  传入的上一次编辑时间
         */
@@ -84,8 +91,8 @@ namespace Job
         }
 
         /*
-        *  @brief   setLastEditingTime:    设置上一次编辑时间
-        *  @param   lastEditingTime:       传入的上一次编辑时间
+        *  @brief   setLastEditingTime: 设置上一次编辑时间
+        *  @param   lastEditingTime: 传入的上一次编辑时间
         *  @return  N/A
         */
         void setLastEditingTime( std::string lastEditingTime )
@@ -94,18 +101,18 @@ namespace Job
         }
 
         /*
-        *  @brief   board:   基板信息
+        *  @brief   board: 基板信息
         *  @param   N/A
         *  @return  传入的基板信息
         */
-        Board board()
+        Board& board()
         {
             return this->m_board;
         }
 
         /*
-        *  @brief   setBoard:    设置基板信息
-        *  @param   board:       传入的基板信息
+        *  @brief   setBoard: 设置基板信息
+        *  @param   board: 传入的基板信息
         *  @return  N/A
         */
         void setBoard( Board board )
