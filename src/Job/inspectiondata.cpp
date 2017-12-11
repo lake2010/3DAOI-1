@@ -1,5 +1,3 @@
-#include <iomanip>
-
 #include "inspectiondata.hpp"
 
 using namespace std;
@@ -37,12 +35,12 @@ void InspectionData::print()
 {
     cout << fixed << setprecision( 2 )    // 精确到小数点后两位
          << "Version: " << version() << "\t"
-         << "LastEditingTime: " << lastEditingTime() << endl << endl
-         << "BoardName: " << board().name() << endl
+         << "LastEditingTime: " << lastEditingTime() << "\n\n"
+         << "BoardName: " << board().name() << "\n"
          << "SizeX: " << board().sizeX() << "\t"
          << "SizeY: " << board().sizeY() << "\t"
-         << "OriginalX: " << board().originalX() << "\t"
-         << "OriginalX: " << board().originalY() << endl << endl;
+         << "OriginalX: " << board().originX() << "\t"
+         << "OriginalX: " << board().originY() << "\n" << endl;
     board().measureObjs().print();
 }
 

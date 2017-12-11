@@ -17,12 +17,26 @@ namespace SDK
         throw SDK::CustomException(msg);\
     }
 
+    #define CATCH_AND_RETHROW_EXCEPTION(appendedMsg)\
+    catch ( SDK::CustomException& ex )\
+    {\
+        std::ostringstream message;\
+        message<<"File: "<<__FILE__<<"\n"\
+               <<"Line:"<<__LINE__<<"\n"\
+               <<"Func:"<<__FUNCTION__<<"\n"\
+               << " " << "\n"\
+               <<"Detail:"<< appendedMsg <<"\n"\
+               <<ex.what()<<"\n";\
+        std::string msg = message.str();\
+        throw  SDK::CustomException(msg);\
+    }
+
     /**
      *  @brief    CustomException
      *                  继承标准异常类exception,用于捕获异常，输出异常信息
      *  @author   plato
      *  @version  2.00 2017-11-22 plato
-     *                 note:create it
+     *                 note:done it
      */
     class CustomException: public std::exception
     {

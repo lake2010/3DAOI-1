@@ -1,15 +1,20 @@
 #ifndef CAPTURESETTING_HPP
 #define CAPTURESETTING_HPP
 
+#include <iostream>
+
+#include <QFile>
 #include <QSettings>
+
+#include "SDK/customexception.hpp"
 
 namespace App
 {
-    // 枚举声明图像位数
+    // 图像位数
     enum class ImgBits
     {
-        BIT_8,   // 8位
-        BIT_16   // 16位
+        BIT_8,   // 8位，可以表达2^8即256种颜色
+        BIT_16   // 16位，可以表达2^16即65535种颜色
     };
 
     /**
@@ -20,7 +25,7 @@ namespace App
      *                  3.该配置文件为功能相关的重要配置，若配置异常，直接退出程序
      *  @author   plato
      *  @version  2.00 2017-12-03 plato
-     *                 note:create it
+     *                 note:done it
      */
     class CaptureSetting
     {

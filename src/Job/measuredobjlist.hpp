@@ -1,6 +1,8 @@
 #ifndef MEASUREDOBJLIST_HPP
 #define MEASUREDOBJLIST_HPP
 
+#include <iomanip>
+
 #include "measuredobj.hpp"
 
 namespace Job
@@ -12,7 +14,7 @@ namespace Job
      *                  2.该类还有记录列表中对象个数、打印对象、清空对象的功能
      *  @author   plato
      *  @version  2.00 2017-11-23 plato
-     *                 note:create it
+     *                 note:done it
      */
     class MeasuredObjList
     {
@@ -42,17 +44,17 @@ namespace Job
 
         /*
         *  @brief   pushHead: 在列表头部插入一个对象
-        *  @param   newObj: 插入的新对象
+        *  @param   obj: 插入的新对象
         *  @return  N/A
         */
-        void pushHead( MeasuredObj& newObj );
+        void pushHead( MeasuredObj& obj );
 
         /*
         *  @brief   pushTail: 在列表尾部插入一个对象
-        *  @param   newObj: 插入的新对象
+        *  @param   obj: 插入的新对象
         *  @return  N/A
         */
-        void pushTail( MeasuredObj& newObj );
+        void pushTail( MeasuredObj& obj );
 
         /*
         *  @brief   pullTail: 移除尾部的一个对象
@@ -81,18 +83,8 @@ namespace Job
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //get & set functions
 
-        /*
-        *  @brief   size: 列表大小
-        *  @param   N/A
-        *  @return  传入的列表大小
-        */
         int size() { return this->m_size; }
 
-        /*
-        *  @brief   pHeadObj: 列表的头对象指针
-        *  @param   N/A
-        *  @return  列表的头对象指针
-        */
         MeasuredObj *pHeadObj() { return this->m_pHeadObj; }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

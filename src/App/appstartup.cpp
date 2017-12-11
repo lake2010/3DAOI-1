@@ -1,9 +1,4 @@
-#include <QDir>
-#include <QFile>
-#include <QTextStream>
-
 #include "appstartup.hpp"
-#include "SDK/customexception.hpp"
 
 using namespace std;
 using namespace App;
@@ -16,15 +11,15 @@ AppStartup::AppStartup()
     // 成员变量初始化
     this->m_appSettingPath = "";
     this->m_captureSettingPath = "";
-    this->m_pMeasuredObj = nullptr;
+    this->m_pHeadMeasuredObj = nullptr;
     this->m_jobPath = "";
 }
 
 AppStartup::~AppStartup()
 {
     // 释放内存空间
-    delete [] this->m_pMeasuredObj;
-    this->m_pMeasuredObj = nullptr;
+    delete [] this->m_pHeadMeasuredObj;
+    this->m_pHeadMeasuredObj = nullptr;
 }
 
 void AppStartup::loadAppSetting( const QString& path )
@@ -41,20 +36,18 @@ void AppStartup::readJobPath()
 {
     try
     {
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1 判断程式文件夹是否存在，不存在则创建默认程式文件夹
+        //step1 判断程式文件夹是否存在，不存在则创建默认程式文件夹
         QDir dir( this->m_appSetting.jobFolderPath() );
         if( !dir.exists() )
         {
             QString filePath = dir.path();
             if( !dir.mkpath( filePath ) )
             {
-                THROW_EXCEPTION("程式路径出错！");
+                THROW_EXCEPTION("程式路径创建失败！");
             }
         }
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2 遍历程式文件夹
+        //step2 遍历程式文件夹
 
         // 将".xml"文件过滤掉
         QStringList filters;
@@ -62,19 +55,16 @@ void AppStartup::readJobPath()
         dir.setNameFilters( filters );
         dir.setFilter( QDir::Files );
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.1 如果文件夹下无程式，生成默认程式
-        //2.2 如果文件夹下有程式，则列举到屏幕供用户选择
+        // 如果文件夹下无程式，程式路径设为空
         QFileInfoList fileInfoList = dir.entryInfoList();        
         if ( fileInfoList.empty() )
         {
-            this->m_pMeasuredObj = new MeasuredObj[OBJ_CNT];
+            this->m_pHeadMeasuredObj = new MeasuredObj[OBJ_CNT];
             this->m_jobPath = "";
         }
-        else
+        else // 如果文件夹下有程式，则列举到屏幕供用户选择
         {
-            //>>>-------------------------------------------------------------------------------------------------------------------------------------
-            //2.2.1 列举到文件到屏幕
+            // 列举程式文件名到屏幕
             QFileInfo fileInfo;
             cout << "请输入数字，选择程式:" << endl;
             for ( int i = 0; i < fileInfoList.size(); ++i )
@@ -83,8 +73,7 @@ void AppStartup::readJobPath()
                 cout << i << ": " << fileInfo.fileName().toStdString() << endl;
             }
 
-            //>>>-------------------------------------------------------------------------------------------------------------------------------------
-            //2.2.2 用户输入数字选择程式
+            // 用户输入数字选择程式
             int num = 0;
             while( true )
             {
@@ -102,13 +91,10 @@ void AppStartup::readJobPath()
                 }
             }
             this->m_jobPath = this->m_appSetting.jobFolderPath()  +
-                              fileInfo.fileName();
+                              fileInfo.fileName(); // 设置用户选择的路径
         } // end of if ( fileInfoList.empty() )
     }
-    catch( const CustomException& ex )
-    {
-        THROW_EXCEPTION( "程式读取失败！" );
-    }
+    CATCH_AND_RETHROW_EXCEPTION("程式读取失败！");
 }
 
 void AppStartup::generateJob( QString path,
@@ -120,6 +106,10 @@ void AppStartup::generateJob( QString path,
         // 创建数据库对象，打开传入路径的数据库
         v1Sqlite.open( path.toStdString() );
 
+        if( !v1Sqlite.isOpened() )
+        {
+            THROW_EXCEPTION("数据库打开失败！");
+        }
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1 创建Job表，表中包含字段：Version、LastEditingTime
         string sqlCreate = "CREATE TABLE Job( Version TEXT, LastEditingTime TEXT );";
@@ -138,8 +128,8 @@ void AppStartup::generateJob( QString path,
         v1Sqlite.execute( sqlInsert, inspectionData.board().name(),
                                      inspectionData.board().sizeX(),
                                      inspectionData.board().sizeY(),
-                                     inspectionData.board().originalX(),
-                                     inspectionData.board().originalY() );
+                                     inspectionData.board().originX(),
+                                     inspectionData.board().originY() );
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3 创建MeasuredObjs表，表中包含字段：Name、PosX、PosY、Width、Height、Angle
@@ -226,8 +216,8 @@ void AppStartup::loadInspectionData( QString path )
                 this->m_inspectionData.board().setName( boost::get<string>( sqlite.columnValue(0) ) );
                 this->m_inspectionData.board().setSizeX( boost::get<double>( sqlite.columnValue(1) ) );
                 this->m_inspectionData.board().setSizeY( boost::get<double>( sqlite.columnValue(2) ) );
-                this->m_inspectionData.board().setOriginalX( boost::get<double>( sqlite.columnValue(3) ) );
-                this->m_inspectionData.board().setOriginalY( boost::get<double>( sqlite.columnValue(4) ) );
+                this->m_inspectionData.board().setOriginX( boost::get<double>( sqlite.columnValue(3) ) );
+                this->m_inspectionData.board().setOriginY( boost::get<double>( sqlite.columnValue(4) ) );
             }
 
             //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -235,19 +225,19 @@ void AppStartup::loadInspectionData( QString path )
             selectedString = "select * from MeasuredObjs";
             sqlite.prepare( selectedString );
 
-            this->m_pMeasuredObj = new MeasuredObj[objCnt];
+            this->m_pHeadMeasuredObj = new MeasuredObj[objCnt];
             for (int i = 0; i < objCnt; ++i)
             {
                 sqlite.step();
 
-                this->m_pMeasuredObj[i].setName( boost::get<string>( sqlite.columnValue(0) ) );
-                this->m_pMeasuredObj[i].body().setPosX( boost::get<double>( sqlite.columnValue(1) ) );
-                this->m_pMeasuredObj[i].body().setPosY( boost::get<double>( sqlite.columnValue(2) ) );
-                this->m_pMeasuredObj[i].body().setWidth( boost::get<double>( sqlite.columnValue(3) ) );
-                this->m_pMeasuredObj[i].body().setHeight( boost::get<double>( sqlite.columnValue(4) ) );
-                this->m_pMeasuredObj[i].body().setAngle( boost::get<double>( sqlite.columnValue(5) ) );
+                this->m_pHeadMeasuredObj[i].setName( boost::get<string>( sqlite.columnValue(0) ) );
+                this->m_pHeadMeasuredObj[i].body().setPosX( boost::get<double>( sqlite.columnValue(1) ) );
+                this->m_pHeadMeasuredObj[i].body().setPosY( boost::get<double>( sqlite.columnValue(2) ) );
+                this->m_pHeadMeasuredObj[i].body().setWidth( boost::get<double>( sqlite.columnValue(3) ) );
+                this->m_pHeadMeasuredObj[i].body().setHeight( boost::get<double>( sqlite.columnValue(4) ) );
+                this->m_pHeadMeasuredObj[i].body().setAngle( boost::get<double>( sqlite.columnValue(5) ) );
 
-                this->m_inspectionData.board().measureObjs().pushTail( this->m_pMeasuredObj[i] );
+                this->m_inspectionData.board().measureObjs().pushTail( this->m_pHeadMeasuredObj[i] );
             }
             sqlite.reset();
             sqlite.close();
@@ -296,10 +286,7 @@ void AppStartup::writeToXml( QString path,
             THROW_EXCEPTION( "创建xml文件失败！" );
         }
     }
-    catch( const CustomException& ex )
-    {
-        THROW_EXCEPTION( ex.what() );
-    }
+    CATCH_AND_RETHROW_EXCEPTION("XML文件写入失败！");
 }
 
 void AppStartup::convertFromV1( SqliteDB& sqlite )

@@ -2,6 +2,9 @@
 #define DATAHELPER_HPP
 
 #include <iostream>
+#include <random>
+#include <ctime>
+#include <functional>
 
 namespace SDK
 {
@@ -12,7 +15,7 @@ namespace SDK
      *                  2.生成当前系统时间
      *  @author   plato
      *  @version  2.00 2017-11-29 plato
-     *                 note:create it
+     *                 note:done it
      */
     class DataHelper
     {

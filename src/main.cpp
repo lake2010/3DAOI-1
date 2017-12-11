@@ -1,7 +1,4 @@
-#include <iostream>
-
 #include "App/appstartup.hpp"
-#include "SDK/customexception.hpp"
 
 using namespace std;
 using namespace App;
@@ -11,11 +8,13 @@ int main()
 {
     try
     {
+        QString appSettingPath = "../src/Setting/AppSetting.ini";
+        QString captureSettingPath = "../src/Setting/CaptureSetting.ini";
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1 启动软件，设置配置文件的路径
         AppStartup app;
-        app.setAppSettingPath( "../src/Setting/AppSetting.ini" );
-        app.setCaptureSettingPath( "../src/Setting/CaptureSetting.ini" );
+        app.setAppSettingPath( appSettingPath );
+        app.setCaptureSettingPath( captureSettingPath );
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2 加载两个配置文件
@@ -31,8 +30,8 @@ int main()
         if ( app.jobPath() == "" )
         {
             // 生成随机数据
-            app.dataGenerator().generateData( app.inspectionData(),
-                                              app.pMeasuredObj() );
+            DataGenerator::generateData( app.inspectionData(),
+                                         app.pMeasuredObj() );
             // 设置程式路径
             app.setJobPath( app.appSetting().jobFolderPath() + "V2" );
             // 生成默认程式
@@ -48,13 +47,13 @@ int main()
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //5 打印检测数据到屏幕
-        cout << endl << "检测信息如下：" << endl;
+        cout << "\n" << "检测信息如下：" << endl;
         app.inspectionData().print();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //6 将检测数据以xml格式输出
         app.writeToXml( app.jobPath() + ".xml", app.inspectionData() );
-        cout << endl << "XML写入成功！" << endl;
+        cout << "\n" << "XML写入成功！" << endl;
     }
     catch( const CustomException& ex )
     {

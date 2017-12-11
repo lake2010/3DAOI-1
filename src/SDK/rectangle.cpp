@@ -4,7 +4,7 @@ using namespace SDK;
 
 Rectangle::Rectangle()
 {
-    // 成员变量初始化
+    // 所有成员变量初始化为0
     this->m_posX = 0;
     this->m_posY = 0;
     this->m_width = 0;
@@ -12,10 +12,7 @@ Rectangle::Rectangle()
     this->m_angle = 0;
 }
 
-Rectangle::Rectangle( double posX,
-                      double posY,
-                      double width,
-                      double height )
+Rectangle::Rectangle( double posX, double posY, double width, double height )
 {
     this->m_posX = posX;
     this->m_posY = posY;

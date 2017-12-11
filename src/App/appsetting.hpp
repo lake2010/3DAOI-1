@@ -1,33 +1,36 @@
 #ifndef APPSETTING_HPP
 #define APPSETTING_HPP
 
+#include <iostream>
+
+#include <QFile>
 #include <QSettings>
 
 namespace App
 {
-    // 枚举声明主题颜色
+    // 主题颜色
     enum class Theme
     {
-        BLACK,  // 黑色
-        WHITE   // 白色
+        BLACK,
+        WHITE
     };
 
-    // 枚举声明语言种类
+    // 语言种类
     enum class Lang
     {
-        CN,   // 中文
-        EN    // 英文
+        CN,
+        EN
     };
 
-    // 枚举声明轨道模式
+    // 轨道模式
     enum class LaneMode
     {
-        DUAL_LANE,   // 双轨
-        SIMULATOR,   // 模拟器
-        SINGLE_LANE  // 单轨
+        DUAL_LANE,   // 双轨，有两条轨道的机器
+        SIMULATOR,   // 模拟器，模拟机器运作的电脑
+        SINGLE_LANE  // 单轨，只有一条轨道的机器
     };
 
-    // 枚举声明机器类型
+    // 机器类型
     enum class MachineType
     {
         AOI,    // 自动光学检测
@@ -43,7 +46,7 @@ namespace App
      *                  3.该配置文件为功能相关的非重要配置，不影响程序启动
      *  @author   plato
      *  @version  2.00 2017-12-03 plato
-     *                 note:create it
+     *                 note:done it
      */
     class AppSetting
     {
@@ -98,25 +101,8 @@ namespace App
         //>>>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //get & set functions
 
-        /*
-        *  @brief   jobFolderPath: 程式目录路径
-        *  @param   N/A
-        *  @return  传入的程式目录路径
-        */
-        QString jobFolderPath()
-        {
-            return this->m_jobFolderPath;
-        }
-
-        /*
-        *  @brief   setJobFolderPath: 设置程式目录路径
-        *  @param   jobFolderPath: 传入的程式目录路径
-        *  @return  N/A
-        */
-        void setJobFolderPath( QString jobFolderPath )
-        {
-            this->m_jobFolderPath = jobFolderPath;
-        }
+        QString jobFolderPath() { return this->m_jobFolderPath; }
+        void setJobFolderPath( QString jobFolderPath ) { this->m_jobFolderPath = jobFolderPath; }
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

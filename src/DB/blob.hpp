@@ -1,7 +1,7 @@
 #ifndef BLOB_HPP
 #define BLOB_HPP
 
-#include  <string>
+#include <string>
 #include <string.h>
 #include <memory>
 
@@ -14,7 +14,7 @@ namespace SSDK
          *
          *  @author rime
          *  @version 2.00 2017-05-10 author
-         *                note:create it
+         *                note:done it
          */
         struct Blob
         {

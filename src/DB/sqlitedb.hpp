@@ -39,7 +39,7 @@
             *
             *  @author rime
             *  @version 2.00 2017-04-05 rime
-            *                note:create it
+            *                note:done it
             */
             class SqliteDB
             {

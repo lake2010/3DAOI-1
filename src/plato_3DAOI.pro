@@ -19,7 +19,6 @@ SOURCES += main.cpp \
     App/appstartup.cpp \
     DB/blob.cpp \
     DB/sqlitedb.cpp \
-    DB/sqlitedbtest.cpp \
 
 HEADERS += \
     App/appsetting.hpp \
@@ -35,7 +34,6 @@ HEADERS += \
     App/appstartup.hpp \
     DB/blob.hpp \
     DB/sqlitedb.hpp \
-    DB/sqlitedbtest.hpp \
 
 DISTFILES +=
 

@@ -1,7 +1,3 @@
-#include <iostream>
-
-#include <QFile>
-
 #include "appsetting.hpp"
 
 using namespace std;
@@ -30,12 +26,10 @@ void AppSetting::writeAppSetting( const QString& path )
 
     configFile.setValue( "Theme", "BLACK" );
     configFile.setValue( "Lang", "CN" );
-    configFile.setValue( "LaneMode", "DUALLANE" );
+    configFile.setValue( "LaneMode", "DUAL_LANE" );
     configFile.setValue( "MachineType", "AOI" );
     configFile.setValue( "CompanyName", "SciJet" );
-    configFile.setValue( "JobFolderPath", "../data/" );
-
-    cout << "加载AppSetting.ini成功" << endl;
+    configFile.setValue( "JobFolderPath", "../data/" );   
 }
 
 void AppSetting::readAppSetting( const QString& path )
@@ -45,109 +39,107 @@ void AppSetting::readAppSetting( const QString& path )
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //1 读取配置文件中主题配置，若数据不正常，则写入默认值
     QString theme = configFile.value( "Theme" ).toString();
-    if( theme != "BLACK" && theme != "WHITE" )
-    {
-        configFile.setValue( "Theme", "BLACK" );
-    }
-    else if( theme == "BLACK" )
+    if( "BLACK" == theme  )
     {
         this->m_theme = Theme::BLACK;
     }
-    else
+    else if( "WHITE" == theme )
     {
         this->m_theme = Theme::WHITE;
+    }
+    else
+    {
+        configFile.setValue( "Theme", "BLACK" );
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //2 读取配置文件中语言配置，若数据不正常，则写入默认值
     QString lang = configFile.value( "Lang" ).toString();
-    if( lang != "CN" && lang != "EN" )
-    {
-        configFile.setValue( "Lang", "CN" );
-    }
-    else if( lang == "CN" )
+    if( "CN" == lang )
     {
         this->m_lang = Lang::CN;
     }
-    else
+    else if( "EN" == lang )
     {
         this->m_lang = Lang::EN;
+    }
+    else
+    {
+        configFile.setValue( "Lang", "CN" );
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //3 读取配置文件中轨道模式配置，若数据不正常，则写入默认值
     QString laneMode = configFile.value( "LaneMode" ).toString();
-    if( laneMode != "DUALLANE" &&
-        laneMode != "SIMULATOR" &&
-        laneMode != "SINGLELANE" )
-    {
-        configFile.setValue( "LaneMode", "DUALLANE" );
-    }
-    else if( laneMode == "DUALLANE" )
+    if( "DUAL_LANE" == laneMode )
     {
         this->m_laneMode = LaneMode::DUAL_LANE;
     }
-    else if( laneMode == "SIMULATOR" )
+    else if( "SIMULATOR" == laneMode )
     {
         this->m_laneMode = LaneMode::SIMULATOR;
     }
-    else
+    else if( "SINGLE_LANE" == laneMode )
     {
         this->m_laneMode = LaneMode::SINGLE_LANE;
+    }
+    else
+    {
+        configFile.setValue( "LaneMode", "DUAL_LANE" );
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //4 读取配置文件中机器类型配置，若数据不正常，则写入默认值
     QString machineType = configFile.value( "MachineType" ).toString();
-    if( machineType != "AOI" && machineType != "SPI" )
-    {
-        configFile.setValue( "MachineType", "AOI" );
-    }
-    else if( machineType == "AOI" )
+    if(  "AOI" == machineType )
     {
         this->m_machineType = MachineType::AOI;
     }
-    else
+    else if( "SPI" == machineType )
     {
         this->m_machineType = MachineType::SPI;
+    }
+    else
+    {
+        configFile.setValue( "MachineType", "AOI" );
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //5 读取配置文件中公司名称配置，若数据不正常，则写入默认值
     QString companyName = configFile.value( "CompanyName" ).toString();
-    if( companyName != "SciJet" && companyName != "Sung" )
+    if( "SciJet" == companyName || companyName == "Sung" )
     {
-        configFile.setValue( "CompanyName", "SciJet" );
+        this->m_companyName = companyName;
     }
     else
     {
-        this->m_companyName = companyName;
+        configFile.setValue( "CompanyName", "SciJet" );
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //6 读取配置文件中程式目录配置，若数据不正常，则写入默认值
     QString jobFolderPath = configFile.value( "JobFolderPath" ).toString();
-    if( jobFolderPath != "../data/" )
+    if( "../data/" == jobFolderPath )
     {
-        configFile.setValue( "JobFolderPath", "../data/" );
+        this->m_jobFolderPath = jobFolderPath;
     }
     else
     {
-        this->m_jobFolderPath = jobFolderPath;
+        configFile.setValue( "JobFolderPath", "../data/" );
     }
 
     cout << "加载AppSetting.ini成功" << endl;
 }
 
 void AppSetting::load( const QString& path )
-{
-    //1 如果文件不存在，创建默认配置文件，写入默认配置
-    //2 如果文件存在，则读取配置文件
-    if( !QFile::exists( path ) )
+{   
+    // 判断要加载的文件是否存在
+    if( !QFile::exists( path ) ) //1 如果不存在，写一个默认配置文件，然后读取
     {
         writeAppSetting( path );
+        readAppSetting( path );
     }    
-    else
+    else // 如果文件存在，则读取配置文件
     {        
         readAppSetting( path );
     }

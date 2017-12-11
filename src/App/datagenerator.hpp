@@ -4,11 +4,11 @@
 #include "SDK/datahelper.hpp"
 #include "Job/inspectiondata.hpp"
 
-//1 宏定义对象个数为50，若程式目录下没有文件，则默认生成50个被测对象
-//2 宏定义chip类型对象个数为所有对象的40%
-//3 宏定义ic类型对象个数为所有对象的60%
+// 宏定义对象个数为50，若程式目录下没有文件，则默认生成50个被测对象
 #define OBJ_CNT 50
+// 宏定义chip类型对象个数为所有对象的40%
 #define CHIP_CNT (OBJ_CNT*0.4)
+// 宏定义ic类型对象个数为所有对象的60%
 #define IC_CNT (OBJ_CNT*0.6)
 
 namespace App
@@ -22,7 +22,7 @@ namespace App
      *                  4.所有被测对象的名称、坐标位置、大小、角度
      *  @author   plato
      *  @version  2.00 2017-11-29 plato
-     *                 note:create it
+     *                 note:done it
      */
     class DataGenerator
     {
@@ -53,11 +53,11 @@ namespace App
         /*
         *  @brief   generateData: 生成数据
         *  @param   inspectionData: 传入的检测数据对象
-        *           obj[]: 传入的被测对象数组
+        *           objArr[]: 传入的被测对象数组
         *  @return  N/A
         */
-        void generateData( Job::InspectionData& inspectionData,
-                           Job::MeasuredObj obj[] );
+        static void generateData( Job::InspectionData& inspectionData,
+                                  Job::MeasuredObj objArr[] );
 
         //<<<----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     };
